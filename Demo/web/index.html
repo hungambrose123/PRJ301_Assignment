@@ -10,15 +10,31 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <div>Hello servlet</div>
+        <div><h1>Hello servlet</h1></div>
         
         <form action ="add">
             <p>Enter first number</p>
-            <input type="text" name="num1">
+            <input type="text" name="num1"> <br>
             <p>Enter second number</p>
-            <input type="text" name="num2">
-            
+            <input type="text" name="num2"> <br>
+            <br>
             <input type="submit">
         </form>
+        
+        <form>
+            First name: <input type="text" name="firstname" />
+            <br />
+            Last name: <input type="text" name="lastname" />
+        </form>
+        
+        <form>
+            <input type="radio" name="sex" value="male" /> Male
+            <br />
+            <input type="radio" name="sex" value="female" /> Female
+        </form>
+        
+        <% 
+        out.println(“Welcome to JSP world”);
+        %>
     </body>
 </html>

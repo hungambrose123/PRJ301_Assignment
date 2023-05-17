@@ -21,8 +21,10 @@ public class add extends HttpServlet{
         int i = Integer.parseInt(req.getParameter("num1"));
         int j = Integer.parseInt(req.getParameter("num2"));
         int result = i + j;
+        String toSend = Integer.toString(result);
         
         RequestDispatcher reqDis = req.getRequestDispatcher("sq");
+        req.setAttribute("value", toSend);
         reqDis.forward(req, res);
         
     }

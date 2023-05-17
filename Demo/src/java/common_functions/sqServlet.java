@@ -21,7 +21,9 @@ public class sqServlet extends HttpServlet{
     @Override
     public void service(HttpServletRequest req, HttpServletResponse res) throws IOException{
         PrintWriter out = res.getWriter();
+        String answer = (String) req.getAttribute("value");
         out.println("Hello this is sq !");
-        
+        out.println("A servlet inside servlet !");
+        out.println("The answer is: "+ answer);
     }
 }
