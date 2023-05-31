@@ -6,7 +6,7 @@
 	 version="3.1">
     
     <servlet>
-        <servlet-name>login123</servlet-name>
+        <servlet-name>login</servlet-name>
         <servlet-class>controller.loginCheck</servlet-class>
         <init-param>
             <param-name>user</param-name>
@@ -18,8 +18,8 @@
         </init-param>
     </servlet>
     <servlet-mapping>
-        <servlet-name>login123</servlet-name>
-        <url-pattern>/login123</url-pattern>
+        <servlet-name>login</servlet-name>
+        <url-pattern>/login</url-pattern>
      </servlet-mapping>
      
     
