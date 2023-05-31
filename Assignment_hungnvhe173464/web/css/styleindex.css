@@ -1,0 +1,38 @@
+.logo_searchMenu{
+    background-color: blanchedalmond;
+}
+.logo_searchMenu img{
+    width: 20%;
+}
+.logo{
+    text-align: center;
+}
+.searchButton{
+    background-color: blue;
+    color: white;
+}
+
+.categories{
+    background-color: beige;
+    height: 70vh;
+}
+.items-list{
+    background-color: aquamarine;
+    height: 70vh;
+}
+.item_row{
+    height: 15vh;
+}
+.item_row > div{
+    background-color: white;
+    border: 2px solid black;
+}
+
+.footer{
+    background-color: blue;
+    color: white;
+    height: 15vh;
+}
+.footer2{
+    text-align: right;
+}
