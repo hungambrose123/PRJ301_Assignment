@@ -4,7 +4,7 @@
  */
 package controller;
 
-import jakarta.servlet.ServletConfig;
+import dal.AccountDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -12,6 +12,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 /**
  *
@@ -34,18 +35,22 @@ public class loginCheck extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
+            AccountDAO accountDAO = new AccountDAO();
             String u = request.getParameter("user");
             String p = request.getParameter("pass");
-            //Get data from XML
-            ServletConfig sc = getServletConfig();
-            String user = sc.getInitParameter("user");
-            String pass = sc.getInitParameter("pass");
-            if (user.equals(u) && pass.equals(p)) {
-                out.write("Login Successful!");
+            boolean loginCheck = accountDAO.checkLogin(u, p);
+            String result = "";
+
+            if (loginCheck) {
+                result = "Login Successful! Click the link below to return to main page";
+                HttpSession session = request.getSession();
+                
+                request.setAttribute("result", result);
+                session.setAttribute("username", u);
+                request.getRequestDispatcher("login.jsp").forward(request, response);
             } else {
-                out.write("login fail");
-                out.write("user: hungnvhe173464    pass: 123");
-                response.sendRedirect("login.jsp");
+                result = "Login fail! please try again";
+                request.setAttribute("result", result);
                 request.getRequestDispatcher("login.jsp").include(request, response);
             }
         }
@@ -77,7 +82,18 @@ public class loginCheck extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String newUser = request.getParameter("user");
+        String newPass = request.getParameter("pass");
+        String newEmail = request.getParameter("email");
+        String message = "Account create successfully !";
+        
+        HttpSession session = request.getSession();
+        session.setAttribute("user", newUser);
+        session.setAttribute("pass", newPass);
+        session.setAttribute("email", newEmail);
+        
+        request.setAttribute("message", message);
+        request.getRequestDispatcher("register.jsp").forward(request, response);
     }
 
     /**

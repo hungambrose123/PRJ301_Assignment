@@ -25,5 +25,7 @@
                 </tr>
             </table>
         </form>
+        <h3 style="color: red">${result}</h3>
+        <a href="index.html">Return to index</a>
     </body>
 </html>

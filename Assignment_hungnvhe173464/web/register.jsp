@@ -12,7 +12,7 @@
         <title>Register</title>
     </head>
     <body>
-        <form name="input" action="register" method="get">
+        <form action="login" method="post">
             <table>
                 <tr>
                     <td>User name:</td><td><input type="text" name="user"/></td>
@@ -28,5 +28,7 @@
                 </tr>
             </table>
         </form>
+        <h3 style="color: red">${message}</h3>
+        <a href="index.html">Return to index</a>
     </body>
 </html>
