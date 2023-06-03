@@ -26,6 +26,6 @@
             </table>
         </form>
         <h3 style="color: red">${result}</h3>
-        <a href="index.html">Return to index</a>
+        <a href="home.jsp">Return to home</a>
     </body>
 </html>

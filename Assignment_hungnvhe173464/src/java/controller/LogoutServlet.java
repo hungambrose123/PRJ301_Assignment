@@ -4,22 +4,19 @@
  */
 package controller;
 
-import dal.AccountDAO;
-import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 /**
  *
  * @author Warspite
  */
-@WebServlet(name = "loginCheck", urlPatterns = {"/loginCheck"})
-public class loginCheck extends HttpServlet {
+public class LogoutServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,25 +31,11 @@ public class loginCheck extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            AccountDAO accountDAO = new AccountDAO();
-            String u = request.getParameter("user");
-            String p = request.getParameter("pass");
-            boolean loginCheck = accountDAO.checkLogin(u, p);
-            String result = "";
-
-            if (loginCheck) {
-                result = "Login Successful! Click the link below to return to main page";
-                HttpSession session = request.getSession();
-                
-                request.setAttribute("result", result);
-                session.setAttribute("username", u);
-                request.getRequestDispatcher("login.jsp").forward(request, response);
-            } else {
-                result = "Login fail! please try again";
-                request.setAttribute("result", result);
-                request.getRequestDispatcher("login.jsp").include(request, response);
-            }
+            HttpSession session = request.getSession();
+            
+            session.invalidate();
+            
+            response.sendRedirect("home.jsp");
         }
     }
 
@@ -82,8 +65,7 @@ public class loginCheck extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-      
-       
+        processRequest(request, response);
     }
 
     /**

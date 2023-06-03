@@ -19,7 +19,9 @@ public class AccountDAO {
     
     public boolean checkLogin(String username, String password){
         boolean check = false;
-        String query = "select * from Student where username = ? , password = ?";
+        String query = "select * \n" +
+                        "from Account \n" +
+                        "where username = ? and password = ?";
         try{
             
             conn = new DBContext().getConnection();
@@ -40,4 +42,5 @@ public class AccountDAO {
         
         return check;
     }
+    
 }
