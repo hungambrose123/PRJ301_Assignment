@@ -43,4 +43,27 @@ public class AccountDAO {
         return check;
     }
     
+    public void AddNewAccount(String username, String password, String email){
+        String query = "INSERT INTO [dbo].[Account]\n"
+                + "           ([username]\n"
+                + "           ,[password]\n"
+                + "           ,[email])\n"
+                + "     VALUES\n"
+                + "           (?\n"
+                + "           ,?\n"
+                + "           ,?)";
+        try {
+
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, username);
+            ps.setString(2, password);
+            ps.setString(3, email);
+            ps.executeUpdate();
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+    
 }

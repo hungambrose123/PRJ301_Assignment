@@ -31,11 +31,16 @@ public class LogoutServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
-            HttpSession session = request.getSession();
+            try{
+                HttpSession session = request.getSession();
+
+                session.invalidate();
+
+                response.sendRedirect("home.jsp");
+            }catch(Exception e){
+                System.out.println(e);
+            }
             
-            session.invalidate();
-            
-            response.sendRedirect("home.jsp");
         }
     }
 
