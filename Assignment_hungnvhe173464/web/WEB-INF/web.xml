@@ -3,14 +3,6 @@
     <servlet>
         <servlet-name>login</servlet-name>
         <servlet-class>controller.loginCheck</servlet-class>
-        <init-param>
-            <param-name>user</param-name>
-            <param-value>hungnvhe173464</param-value>
-        </init-param>
-        <init-param>
-            <param-name>pass</param-name>
-            <param-value>123</param-value>
-        </init-param>
     </servlet>
     <servlet>
         <servlet-name>LogoutServlet</servlet-name>
