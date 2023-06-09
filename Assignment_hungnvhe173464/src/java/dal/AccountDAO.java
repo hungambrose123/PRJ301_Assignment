@@ -13,9 +13,9 @@ import java.sql.ResultSet;
  * @author Warspite
  */
 public class AccountDAO {
-    Connection conn = null;
-    PreparedStatement ps = null;
-    ResultSet rs = null;
+    Connection connection = null;
+    PreparedStatement preparedStatement = null;
+    ResultSet resultSet = null;
     
     public boolean checkLogin(String username, String password){
         boolean check = false;
@@ -24,13 +24,13 @@ public class AccountDAO {
                         "where username = ? and password = ?";
         try{
             
-            conn = new DBContext().getConnection();
-            ps = conn.prepareStatement(query);
-            ps.setString(1, username);
-            ps.setString(2, password);
-            rs = ps.executeQuery();
+            connection = new DBContext().getConnection();
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, username);
+            preparedStatement.setString(2, password);
+            resultSet = preparedStatement.executeQuery();
             
-            if(rs.next()){
+            if(resultSet.next()){
                 check= true;
             }else{
                 check = false;
@@ -54,12 +54,12 @@ public class AccountDAO {
                 + "           ,?)";
         try {
 
-            conn = new DBContext().getConnection();
-            ps = conn.prepareStatement(query);
-            ps.setString(1, username);
-            ps.setString(2, password);
-            ps.setString(3, email);
-            ps.executeUpdate();
+            connection = new DBContext().getConnection();
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, username);
+            preparedStatement.setString(2, password);
+            preparedStatement.setString(3, email);
+            preparedStatement.executeUpdate();
 
         } catch (Exception e) {
             System.out.println(e);
