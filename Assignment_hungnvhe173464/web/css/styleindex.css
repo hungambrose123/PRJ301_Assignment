@@ -1,6 +1,3 @@
-.logo_searchMenu{
-    margin: 0;
-}
-.logo_searchMenu > row{
-    width: 100vw;
+.topBar img{
+    height: 10vh;
 }
