@@ -4,6 +4,7 @@
     Author     : Warspite
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="jakarta.servlet.http.HttpSession" %>
 <!DOCTYPE html>
@@ -45,49 +46,26 @@
         <div class="container-fluid content">
             <div class="row">
                 <div class="col-3 categories">
-                    <h3>Danh mục sản phẩm</h3>
-                    <div>Bút bi</div>
-                    <div>Bút bi nước</div>
-                    <div>Bút mực</div>
-                    <div>Bút dạ</div>
-                    <div>Bút hightlighter</div>
-                    <div>Vở ghi chép</div>
-                    <div>Đèn học</div>
+                    <h3>Category</h3>
+                    <ul>
+                        <c:forEach items="${productCategory}" var="pc" >
+                            <li><a href="#">${pc.name}</a></li>
+                        </c:forEach>  
+                    </ul>
                 </div>
                 <div class="col-9 items-list">
-                    <h3>Sản phẩm</h3>
+                    <h3>Product</h3>
                     <div class="row item_row">
-                        <div class="col-2">Sản phẩm 1</div>
-                        <div class="col-2">Sản phẩm 2</div>
-                        <div class="col-2">Sản phẩm 3</div>
-                        <div class="col-2">Sản phẩm 4</div>
-                        <div class="col-2">Sản phẩm 5</div>
-                        <div class="col-2">Sản phẩm 6</div>
+                        <c:forEach items="${productList}" var="p">
+                           <div class="col-4">
+                               <p>${p.name}</p>
+                               <img class="img-fluid" src="${p.image}" alt="productImage">
+                               <p>${p.price} VND</p>
+                               <a href="#">Buy now</a>
+                           </div> 
+                        </c:forEach>
                     </div>
-                    <div class="row item_row">
-                        <div class="col-2">Sản phẩm 1</div>
-                        <div class="col-2">Sản phẩm 2</div>
-                        <div class="col-2">Sản phẩm 3</div>
-                        <div class="col-2">Sản phẩm 4</div>
-                        <div class="col-2">Sản phẩm 5</div>
-                        <div class="col-2">Sản phẩm 6</div>
-                    </div>
-                    <div class="row item_row">
-                        <div class="col-2">Sản phẩm 1</div>
-                        <div class="col-2">Sản phẩm 2</div>
-                        <div class="col-2">Sản phẩm 3</div>
-                        <div class="col-2">Sản phẩm 4</div>
-                        <div class="col-2">Sản phẩm 5</div>
-                        <div class="col-2">Sản phẩm 6</div>
-                    </div>
-                    <div class="row item_row">
-                        <div class="col-2">Sản phẩm 1</div>
-                        <div class="col-2">Sản phẩm 2</div>
-                        <div class="col-2">Sản phẩm 3</div>
-                        <div class="col-2">Sản phẩm 4</div>
-                        <div class="col-2">Sản phẩm 5</div>
-                        <div class="col-2">Sản phẩm 6</div>
-                    </div>
+                    
                 </div>
             </div>
 
