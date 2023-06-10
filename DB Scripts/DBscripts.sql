@@ -12,7 +12,7 @@ create table Account_session(
 
 create table Product_category(
 	id int primary key,
-	name nvarchar(10)
+	name nvarchar(50)
 )
 
 create table Product(
