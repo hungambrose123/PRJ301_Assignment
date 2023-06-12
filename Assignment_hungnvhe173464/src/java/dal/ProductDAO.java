@@ -73,5 +73,27 @@ public class ProductDAO {
         
         return productCategory;
     }
+    
+    public List<ProductCategory> getProductByCategory(int category_id){
+        List<ProductCategory> productByCategory = new ArrayList<>();
+        String query = "select * from Product where category_id = ?";
+        try {
+            connection = new DBContext().getConnection();
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, category_id);
+            resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                ProductCategory productList = new ProductCategory(resultSet.getInt(1),
+                                                                  resultSet.getString(2));
+                productByCategory.add(productList);
+            }
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+        return productByCategory;
+    }
             
 }
