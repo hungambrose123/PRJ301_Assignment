@@ -74,18 +74,24 @@ public class ProductDAO {
         return productCategory;
     }
     
-    public List<ProductCategory> getProductByCategory(int category_id){
-        List<ProductCategory> productByCategory = new ArrayList<>();
-        String query = "select * from Product where category_id = ?";
+    public List<Product> getProductByCategory(String categoryName){
+        List<Product> productByCategory = new ArrayList<>();
+        String query = "select * \n" +
+                       "from Product p, Product_category pc\n" +
+                       "where p.category_id = pc.id and pc.name = ?";
         try {
             connection = new DBContext().getConnection();
             preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setInt(1, category_id);
+            preparedStatement.setString(1, categoryName);
             resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
-                ProductCategory productList = new ProductCategory(resultSet.getInt(1),
-                                                                  resultSet.getString(2));
+                Product productList = new Product(resultSet.getInt(1),
+                        resultSet.getString(2),
+                        resultSet.getInt(3),
+                        resultSet.getString(4),
+                        resultSet.getString(5),
+                        resultSet.getInt(6));
                 productByCategory.add(productList);
             }
 

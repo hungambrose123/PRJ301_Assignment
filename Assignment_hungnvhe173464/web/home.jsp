@@ -50,14 +50,14 @@
         </div>
 
         <div class="container-fluid content">
-            <!-- categories -->
+            <!-- categories --> 
             <div class="row">
                 <div class="col-2 categories">
                     <h3 class="text-center">Category</h3>
                     <div class="list-group">
                         <a href="#" class="list-group-item list-group-item-action active" aria-current="true">All product</a>
                         <c:forEach items="${productCategory}" var="pc" >
-                            <a href="#" class="list-group-item list-group-item-action" >${pc.name}</a>
+                            <a href="searchCategory?categoryName=${pc.name}" class="list-group-item list-group-item-action" >${pc.name}</a>
                         </c:forEach>  
                     </div>
                 </div>

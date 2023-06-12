@@ -7,6 +7,7 @@ package dbTest;
 import dal.ProductDAO;
 import java.util.List;
 import model.Product;
+import model.ProductCategory;
 
 /**
  *
@@ -16,7 +17,7 @@ public class productTest {
         
     public static void main(String[] args){
         ProductDAO productDAO = new ProductDAO();
-        List<Product> test =  productDAO.getAllProduct();
+        List<Product> test =  productDAO.getProductByCategory("Books");
         
         System.out.println(test);
     }

@@ -36,12 +36,12 @@ public class CategoryServlet extends HttpServlet {
         try ( PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             try{
-                int id = Integer.parseInt(request.getParameter("category"));
+                String categoryName = request.getParameter("categoryName");
 
                 ProductDAO productDAO = new ProductDAO();
-                List<ProductCategory> productList = productDAO.getProductByCategory(id);
+                List<Product> productListByCategory = productDAO.getProductByCategory(categoryName);
 
-                request.setAttribute("productListBy", productList);
+                request.setAttribute("productList", productListByCategory);
                 request.getRequestDispatcher("home.jsp").forward(request, response);
             }catch(Exception e){
                 System.out.println(e);
