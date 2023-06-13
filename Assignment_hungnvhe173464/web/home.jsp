@@ -24,10 +24,8 @@
                 <!-- search function -->
                 <div class="col-4 text-center">
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Tên sản phẩm" aria-label="Tên sản phẩm" aria-describedby="basic-addon2">
-                        <div class="input-group-append">
-                            <button class="btn btn-primary searchButton" type="button">Search</button>
-                        </div>
+                        <input type="text" class="form-control" placeholder="Tên sản phẩm" aria-label="Tên sản phẩm" aria-describedby="basic-addon2" name="search">
+                        <button class="btn btn-primary searchButton" type="button" href="searchProductByName?seachResult=search" >Search</button>
                     </div>
                 </div>
                 <!-- login, logout and register -->
@@ -55,9 +53,9 @@
                 <div class="col-2 categories">
                     <h3 class="text-center">Category</h3>
                     <div class="list-group">
-                        <a href="#" class="list-group-item list-group-item-action active" aria-current="true">All product</a>
+                        <a href="productServlet" class="list-group-item list-group-item-action active" aria-current="true">All product</a>
                         <c:forEach items="${productCategory}" var="pc" >
-                            <a href="searchCategory?categoryName=${pc.name}" class="list-group-item list-group-item-action" >${pc.name}</a>
+                            <a class="list-group-item list-group-item-action" href="searchCategory?categoryName=${pc.name}" >${pc.name}</a>
                         </c:forEach>  
                     </div>
                 </div>

@@ -101,5 +101,33 @@ public class ProductDAO {
 
         return productByCategory;
     }
+    
+    public List<Product> getProductByName(String name){
+        List<Product> productByName= new ArrayList<>();
+        String query = "select*\n"
+                + "from Product p \n"
+                + "where p.name like '%?%'";
+        try {
+            connection = new DBContext().getConnection();
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, name);
+            resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                Product productList = new Product(resultSet.getInt(1),
+                        resultSet.getString(2),
+                        resultSet.getInt(3),
+                        resultSet.getString(4),
+                        resultSet.getString(5),
+                        resultSet.getInt(6));
+                productByName.add(productList);
+            }
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        
+        return productByName;
+    }
             
 }

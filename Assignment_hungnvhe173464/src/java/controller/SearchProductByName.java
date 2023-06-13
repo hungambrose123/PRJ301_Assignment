@@ -4,19 +4,22 @@
  */
 package controller;
 
+import dal.ProductDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
+import model.Product;
+import model.ProductCategory;
 
 /**
  *
  * @author Warspite
  */
-public class LogoutServlet extends HttpServlet {
+public class SearchProductByName extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,16 +34,15 @@ public class LogoutServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
-            try{
-                HttpSession session = request.getSession();
+            /* TODO output your page here. You may use following sample code. */
+            ProductDAO productDAO = new ProductDAO();
+            String seachResult = request.getParameter("seachResult");
+            List<Product> productList = productDAO.getProductByName(seachResult);
+            List<ProductCategory> productCategory = productDAO.getProductCategory();
 
-                session.invalidate();
-
-                response.sendRedirect("productServlet");
-            }catch(Exception e){
-                System.out.println(e);
-            }
-            
+            request.setAttribute("productList", productList);
+            request.setAttribute("productCategory", productCategory);
+            request.getRequestDispatcher("home.jsp").forward(request, response);
         }
     }
 
