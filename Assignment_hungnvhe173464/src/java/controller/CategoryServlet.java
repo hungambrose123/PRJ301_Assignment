@@ -40,7 +40,9 @@ public class CategoryServlet extends HttpServlet {
 
                 ProductDAO productDAO = new ProductDAO();
                 List<Product> productListByCategory = productDAO.getProductByCategory(categoryName);
+                List<ProductCategory> productCategory = productDAO.getProductCategory();
 
+                request.setAttribute("productCategory", productCategory);
                 request.setAttribute("productList", productListByCategory);
                 request.getRequestDispatcher("home.jsp").forward(request, response);
             }catch(Exception e){
