@@ -53,9 +53,9 @@
                 <div class="col-2 categories">
                     <h3 class="text-center">Category</h3>
                     <div class="list-group">
-                        <a href="productServlet" class="list-group-item list-group-item-action active" aria-current="true">All product</a>
+                        <a href="productServlet" class="list-group-item list-group-item-action list-group-item-info" aria-current="true">All product</a>
                         <c:forEach items="${productCategory}" var="pc" >
-                            <a class="list-group-item list-group-item-action" href="searchCategory?categoryName=${pc.name}" >${pc.name}</a>
+                            <a class="list-group-item list-group-item-action ${categoryName == pc.name ? "active" : ""}" href="searchCategory?categoryName=${pc.name}" >${pc.name}</a>
                         </c:forEach>  
                     </div>
                 </div>
