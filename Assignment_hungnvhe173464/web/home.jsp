@@ -36,7 +36,7 @@
                                 <div class="card">
                                    <img class="img-fluid card-img-top" src="${p.image}" alt="productImage">
                                    <div class="card-body">
-                                    <p class="card-title">${p.name}</p>
+                                    <a href="productDetails?productId=${p.id}"><p class="card-title">${p.name}</p></a>                                   
                                     <p class="card-text">${p.price} VND</p>
                                    <a href="#" class="btn btn-danger">Buy now</a>
                                    <a href="#" class="btn btn-primary">Add to cart</a>

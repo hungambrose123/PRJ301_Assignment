@@ -129,5 +129,32 @@ public class ProductDAO {
         
         return productByName;
     }
+    
+    public Product getProductByID(int id) {
+        String query = "select *\n"
+                + "from Product p\n"
+                + "where p.id = ?";
+        try {
+            connection = new DBContext().getConnection();
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, id);
+            resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                Product product = new Product(resultSet.getInt(1),
+                        resultSet.getString(2),
+                        resultSet.getInt(3),
+                        resultSet.getString(4),
+                        resultSet.getString(5),
+                        resultSet.getInt(6));
+                return product;
+            }
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+        return null;
+    }
             
 }
