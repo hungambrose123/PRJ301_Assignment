@@ -18,7 +18,7 @@
                         <form action="searchProductByName" method="get">
                             <table>
                                 <tr>
-                                    <td><input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="basic-addon2" name="searchByName"></td>
+                                    <td><input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="basic-addon2" value="${searchByName}" name="searchByName"></td>
                                     <td><button class="btn btn-primary searchButton" type="submit">Search</button></td>
                                 </tr>
                             </table>  

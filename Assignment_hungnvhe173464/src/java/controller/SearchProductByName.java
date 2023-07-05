@@ -40,6 +40,7 @@ public class SearchProductByName extends HttpServlet {
             List<Product> productList = productDAO.getProductByName(seachResult);
             List<ProductCategory> productCategory = productDAO.getProductCategory();
 
+            request.setAttribute("searchByName", seachResult);
             request.setAttribute("productList", productList);
             request.setAttribute("productCategory", productCategory);
             request.getRequestDispatcher("home.jsp").forward(request, response);
