@@ -106,11 +106,11 @@ public class ProductDAO {
         List<Product> productByName= new ArrayList<>();
         String query = "select*\n"
                 + "from Product p \n"
-                + "where p.name like '%?%'";
+                + "where p.name like ?";
         try {
             connection = new DBContext().getConnection();
             preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1, name);
+            preparedStatement.setString(1, "%"+name+"%");
             resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {

@@ -36,7 +36,7 @@ public class SearchProductByName extends HttpServlet {
         try ( PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             ProductDAO productDAO = new ProductDAO();
-            String seachResult = request.getParameter("seachResult");
+            String seachResult = request.getParameter("searchByName");
             List<Product> productList = productDAO.getProductByName(seachResult);
             List<ProductCategory> productCategory = productDAO.getProductCategory();
 

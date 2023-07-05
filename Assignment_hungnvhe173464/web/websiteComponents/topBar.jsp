@@ -15,8 +15,14 @@
                 <!-- search function -->
                 <div class="col-4 text-center">
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Tên sản phẩm" aria-label="Tên sản phẩm" aria-describedby="basic-addon2" name="search">
-                        <button class="btn btn-primary searchButton" type="button" href="searchProductByName?seachResult=search" >Search</button>
+                        <form action="searchProductByName" method="get">
+                            <table>
+                                <tr>
+                                    <td><input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="basic-addon2" name="searchByName"></td>
+                                    <td><button class="btn btn-primary searchButton" type="submit">Search</button></td>
+                                </tr>
+                            </table>  
+                        </form>
                     </div>
                 </div>
                 <!-- login, logout and register -->
