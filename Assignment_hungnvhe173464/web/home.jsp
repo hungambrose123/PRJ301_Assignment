@@ -34,7 +34,7 @@
                         <c:forEach items="${productList}" var="p">
                             <div class="col-12 col-sm-2 col-md-4 col-lg-3 ">
                                 <div class="card">
-                                   <img class="img-fluid card-img-top" src="${p.image}" alt="productImage">
+                                   <a href="productDetails?productId=${p.id}"><img class="img-fluid card-img-top" src="${p.image}" alt="productImage"></a>                                  
                                    <div class="card-body">
                                     <a href="productDetails?productId=${p.id}"><p class="card-title">${p.name}</p></a>                                   
                                     <p class="card-text">${p.price} VND</p>
@@ -48,6 +48,7 @@
                 </div>
             <!-- displaying items -->
             </div>
+            <jsp:include page="websiteComponents/pagination.jsp"></jsp:include>
         </div>
          <!-- left bar and main content -->
 
