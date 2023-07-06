@@ -57,7 +57,35 @@ public class productServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request,response);
+        ProductDAO productDAO = new ProductDAO();
+        List<Product> allProduct = productDAO.getAllProduct();
+        List<ProductCategory> productCategory = productDAO.getProductCategory();
+        
+        int productListSize = allProduct.size();
+        
+        int productsPerPage = 8;
+        int numberOfPage = (productListSize%productsPerPage==0)
+                            ?(productListSize/productsPerPage)  // if page is even
+                            :((productListSize/productsPerPage) + 1); // if page is odd
+        int currentPage = 0;
+        String nPage = request.getParameter("currentPage");
+        
+        if(nPage == null){
+            currentPage = 1;
+        }else{
+            currentPage = Integer.parseInt(nPage);
+        }
+        
+        int start = (currentPage-1)*productsPerPage; 
+        int end = Math.min(currentPage*productsPerPage, productListSize);
+        // new productList for specific page
+        List<Product> newProductList = productDAO.getProductPerPage(allProduct, start, end);
+
+        request.setAttribute("productList", newProductList);
+        request.setAttribute("numberOfPage", numberOfPage);
+        request.setAttribute("currentPage", currentPage);
+        request.setAttribute("productCategory", productCategory);
+        request.getRequestDispatcher("home.jsp").forward(request, response);
     }
 
     /**

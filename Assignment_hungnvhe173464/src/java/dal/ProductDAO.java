@@ -53,6 +53,15 @@ public class ProductDAO {
         return product;
     }
     
+    public List<Product> getProductPerPage(List<Product> productList, int start, int end){
+        List<Product> newProductList = new ArrayList<>();
+        for(int i=start; i<end; i++){
+            newProductList.add(productList.get(i));
+        }
+        
+        return newProductList;
+    }
+    
     public List<ProductCategory> getProductCategory(){
         List<ProductCategory> productCategory = new ArrayList<>();
         String query = "select * from Product_category";
