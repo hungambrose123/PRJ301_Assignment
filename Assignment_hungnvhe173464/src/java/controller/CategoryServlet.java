@@ -45,7 +45,7 @@ public class CategoryServlet extends HttpServlet {
                 request.setAttribute("productCategory", productCategory);
                 request.setAttribute("categoryName", categoryName);
                 request.setAttribute("productList", productListByCategory);
-                request.getRequestDispatcher("home.jsp").forward(request, response);
+                request.getRequestDispatcher("/userView/home.jsp").forward(request, response);
             }catch(Exception e){
                 System.out.println(e);
             }

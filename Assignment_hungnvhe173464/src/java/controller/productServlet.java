@@ -41,7 +41,7 @@ public class productServlet extends HttpServlet {
             
             request.setAttribute("productList", productList);
             request.setAttribute("productCategory", productCategory);
-            request.getRequestDispatcher("home.jsp").forward(request, response);
+            request.getRequestDispatcher("/userView/home.jsp").forward(request, response);
         }
     }
 
@@ -85,7 +85,7 @@ public class productServlet extends HttpServlet {
         request.setAttribute("numberOfPage", numberOfPage);
         request.setAttribute("currentPage", currentPage);
         request.setAttribute("productCategory", productCategory);
-        request.getRequestDispatcher("home.jsp").forward(request, response);
+        request.getRequestDispatcher("/userView/home.jsp").forward(request, response);
     }
 
     /**

@@ -67,7 +67,7 @@ public class productDetails extends HttpServlet {
 
         request.setAttribute("product", product);
         request.setAttribute("productCategory", productCategory);
-        request.getRequestDispatcher("productDetails.jsp").forward(request, response);
+        request.getRequestDispatcher("/userView/detail.jsp").forward(request, response);
     }
 
     /**

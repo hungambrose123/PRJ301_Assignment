@@ -17,7 +17,7 @@ public class productTest {
         
     public static void main(String[] args){
         ProductDAO productDAO = new ProductDAO();
-        List<Product> test =  productDAO.getProductByCategory("Books");
+        List<Product> test =  productDAO.getAllProduct();
         
         System.out.println(test);
     }

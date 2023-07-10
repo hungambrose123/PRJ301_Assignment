@@ -6,6 +6,7 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<jsp:include page="../websiteComponents/headMetadata.jsp"></jsp:include>
 
 <div class="col-2 categories">
     <h3 class="text-center">Category</h3>
@@ -16,3 +17,6 @@
         </c:forEach>  
     </div>
 </div>
+
+<!-- JavaScript Libraries -->
+        <jsp:include page="../websiteComponents/jsScripts.jsp"></jsp:include>
