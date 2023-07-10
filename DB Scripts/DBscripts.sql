@@ -1,13 +1,11 @@
+go master
+create database VanPhongPham
+
 create table Account(
 	id int identity(1,1) primary key not null,
 	username nvarchar(50) not null,
 	password nvarchar(50) not null,
 	email nvarchar(50)
-)
-
-create table Account_session(
-	id int identity(1,1) primary key not null,
-	account_id int foreign key references Account(id) not null
 )
 
 create table Product_category(
@@ -22,14 +20,6 @@ create table Product(
 	image nvarchar(200),
 	description nvarchar(200),
 	category_id int foreign key references  Product_category(id) not null
-)
-
-create table Shopping_cart(
-	id int identity(1,1) primary key not null,
-	session_id int,
-	product_id int,
-	constraint Shopping_session foreign key (session_id)  references Account_session(id),
-	constraint Product_info foreign key (product_id) references Product(id)
 )
 
 create table Order_details(
@@ -50,6 +40,7 @@ create table Order_items(
 	id int identity(1,1) primary key not null, 
 	order_id int not null,
 	product_id int not null,
+	quantity int,
 	constraint order_belong_to foreign key (order_id) references Order_details(id),
 	constraint order_products foreign key (product_id) references Product(id)
 )
