@@ -48,12 +48,12 @@
                     </a>
                 </div>
                 <div class="col-lg-6 col-6 text-left">
-                    <form action="">
+                    <form action="searchProductByName">
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search for products">
+                            <input type="text" class="form-control" placeholder="Search for products" name="searchByName">
                             <div class="input-group-append">
                                 <span class="input-group-text bg-transparent text-primary">
-                                    <i class="fa fa-search"></i>
+                                    <button class="fa fa-search" type="submit"></button>
                                 </span>
                             </div>
                         </div>

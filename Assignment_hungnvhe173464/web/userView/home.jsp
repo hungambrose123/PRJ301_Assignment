@@ -126,7 +126,7 @@
                         </c:forEach>
 <!--                        product item-->
     
-                  <jsp:include page="websiteComponents/pagination.jsp"></jsp:include>
+                  <jsp:include page="../websiteComponents/pagination.jsp"></jsp:include>
                         
 
                     </div>

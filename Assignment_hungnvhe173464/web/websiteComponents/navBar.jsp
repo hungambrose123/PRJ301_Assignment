@@ -5,6 +5,7 @@
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="jakarta.servlet.http.HttpSession" %>
 
 <jsp:include page="../websiteComponents/headMetadata.jsp"></jsp:include>
 
@@ -35,19 +36,21 @@
                             <div class="navbar-nav mr-auto py-0">
                                 <a href="productServlet" class="nav-item nav-link">Home</a>
                                 <a href="shop.html" class="nav-item nav-link active">Shop</a>
-                                <a href="detail.html" class="nav-item nav-link">Shop Detail</a>
-                                <div class="nav-item dropdown">
-                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
-                                    <div class="dropdown-menu rounded-0 m-0">
-                                        <a href="cart.html" class="dropdown-item">Shopping Cart</a>
-                                        <a href="checkout.html" class="dropdown-item">Checkout</a>
-                                    </div>
-                                </div>
+                                <a href="../userView/cart.jsp" class="dropdown-item">Shopping Cart</a>
+                                <a href="../userView/checkout.jsp" class="dropdown-item">Checkout</a>
                                 <a href="contact.html" class="nav-item nav-link">Contact</a>
-                            </div>
+                          
                             <div class="navbar-nav ml-auto py-0">
-                                <a href="" class="nav-item nav-link">Login</a>
-                                <a href="" class="nav-item nav-link">Register</a>
+                                <% if (session.getAttribute("username") == null || session.getAttribute("username").equals("")){ %>
+                                <a href="login" class="nav-item nav-link">Login</a>
+                                <a href="register" class="nav-item nav-link">Register</a>
+                                <%
+                                    } else{ %>
+                                    <p>Hello, ${sessionScope.username}</p>
+                                    <a href="logout" class="nav-item nav-link">Logout</a>
+                                 <%   }
+                                %>
+                                
                             </div>
                         </div>
                     </nav>

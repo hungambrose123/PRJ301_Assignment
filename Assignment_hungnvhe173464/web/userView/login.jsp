@@ -15,7 +15,7 @@
     </head>
     <body>
         <div class="container loginForm">
-            <form class="text-center" name="input" action="login" method="get">
+            <form class="text-center" name="input" action="login" method="post">
                 <div class="form-group">
                     <label for="user">Username</label>
                     <input type="text" class="form-control" name="user">

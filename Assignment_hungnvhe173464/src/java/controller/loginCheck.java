@@ -35,29 +35,7 @@ public class loginCheck extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            
-            try{
-                AccountDAO accountDAO = new AccountDAO();
-                String u = request.getParameter("user");
-                String p = request.getParameter("pass");
-                boolean loginCheck = accountDAO.checkLogin(u, p);
-                String result = "";
-
-                if (loginCheck) {
-                    result = "Login Successful! Click the link below to return to main page";
-                    HttpSession session = request.getSession();
-
-                    request.setAttribute("result", result);
-                    session.setAttribute("username", u);
-                    request.getRequestDispatcher("login.jsp").forward(request, response);
-                } else {
-                    result = "Login fail! please try again";
-                    request.setAttribute("result", result);
-                    request.getRequestDispatcher("login.jsp").include(request, response);
-                }
-            }catch(Exception e){
-                System.out.println(e);
-            }
+            request.getRequestDispatcher("/userView/login.jsp").forward(request, response);
             
         }
     }
@@ -88,20 +66,28 @@ public class loginCheck extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        AccountDAO accountDAO = new AccountDAO();
-        String message = "Account created successfully !";
-        try{
-            String username = request.getParameter("user");
-            String password = request.getParameter("pass");
-            String email = request.getParameter("email");
+        try {
+            AccountDAO accountDAO = new AccountDAO();
+            String u = request.getParameter("user");
+            String p = request.getParameter("pass");
+            boolean loginCheck = accountDAO.checkLogin(u, p);
+            String result = "";
 
-            accountDAO.AddNewAccount(username, password, email);
-            request.setAttribute("message", message);
-            request.getRequestDispatcher("register.jsp").forward(request, response);
-        }catch(Exception e){
+            if (loginCheck) {
+                result = "Login Successful! Click the link below to return to main page";
+                HttpSession session = request.getSession();
+
+                request.setAttribute("result", result);
+                session.setAttribute("username", u);
+                request.getRequestDispatcher("/userView/login.jsp").forward(request, response);
+            } else {
+                result = "Login fail! please try again";
+                request.setAttribute("result", result);
+                request.getRequestDispatcher("/userView/login.jsp").include(request, response);
+            }
+        } catch (Exception e) {
             System.out.println(e);
         }
-        
        
     }
 
