@@ -34,8 +34,7 @@
                         </button>
                         <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                             <div class="navbar-nav mr-auto py-0">
-                                <a href="productServlet" class="nav-item nav-link">Home</a>
-                                <a href="shop.html" class="nav-item nav-link active">Shop</a>
+                                <a href="productServlet" class="nav-item nav-link active">Home</a>
                                 <a href="contact.html" class="nav-item nav-link">Contact</a>
                                 <a class="nav-item nav-link">--------</a>
                                 <a href="cart" class="nav-item nav-link">Shopping Cart</a>
@@ -48,7 +47,7 @@
                                 <a href="register" class="nav-item nav-link">Register</a>
                                 <%
                                     } else{ %>
-                                    <p>Hello, ${sessionScope.username}</p>
+                                    <p class="nav-item nav-link">Hello, ${sessionScope.username}</p>
                                     <a href="logout" class="nav-item nav-link">Logout</a>
                                  <%   }
                                 %>

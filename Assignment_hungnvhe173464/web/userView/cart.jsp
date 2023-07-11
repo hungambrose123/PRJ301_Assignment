@@ -44,7 +44,7 @@
                             <th>Remove</th>
                         </tr>
                     </thead>
-                    <tbody class="align-middle">
+                    <tbody class="align-middle"> <% /* %>
                     <c:set var="o" value="${requestScope.cart}"></c:set>
                     <c:set var="tt" value="0"></c:set>
                     <c:forEach items="${o.item}" var="i">
@@ -56,12 +56,12 @@
                             <td class="align-middle">
                                 <div class="input-group quantity mx-auto" style="width: 100px;">
                                     <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-minus" >
+                                        <button href="cartCount?num=-1&id=${i.product.id}" class="btn btn-sm btn-primary btn-minus" >
                                             <i class="fa fa-minus"></i>
                                         </button>
                                     </div>
                                     <input type="text" class="form-control form-control-sm bg-secondary text-center" value="${i.quantity}">
-                                    <div class="input-group-btn">
+                                    <div href="cartCount?num=1&id=${i.product.id}" class="input-group-btn">
                                         <button class="btn btn-sm btn-primary btn-plus">
                                             <i class="fa fa-plus"></i>
                                         </button>
@@ -71,33 +71,8 @@
                             <td class="align-middle">${i.quantity * i.product.price}</td>
                             <td class="align-middle"><button class="btn btn-sm btn-primary"><i class="fa fa-times"></i></button></td>
                         </tr>
-                    </c:forEach>
-                        
-                        
-                        <tr>
-                            <td class="align-middle">1</td>
-                            <td class="align-middle"><img src="img/product-1.jpg" alt="" style="width: 50px;"> Colorful Stylish Shirt</td>
-                            <td class="align-middle">$150</td>
-                            <td class="align-middle">
-                                <div class="input-group quantity mx-auto" style="width: 100px;">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-minus" >
-                                        <i class="fa fa-minus"></i>
-                                        </button>
-                                    </div>
-                                    <input type="text" class="form-control form-control-sm bg-secondary text-center" value="5">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-plus">
-                                            <i class="fa fa-plus"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="align-middle">$150</td>
-                            <td class="align-middle"><button class="btn btn-sm btn-primary"><i class="fa fa-times"></i></button></td>
-                        </tr>
-                        
-                        
+                    </c:forEach> 
+                         <% */ %>
                     </tbody>
                 </table>
             </div>
