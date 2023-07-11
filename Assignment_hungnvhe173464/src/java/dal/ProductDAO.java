@@ -165,5 +165,46 @@ public class ProductDAO {
 
         return null;
     }
+    
+    public void deleteProductById(int id){
+        String query = "delete *\n"
+                + "from Product \n"
+                + "where id = ?";
+        try {
+            connection = new DBContext().getConnection();
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, id);
+            preparedStatement.executeUpdate();
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+    
+    public void editProductById(int id){
+        String query = "delete *\n"
+                + "from Product \n"
+                + "where id = ?";
+        try {
+            connection = new DBContext().getConnection();
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, id);
+            preparedStatement.executeUpdate();
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+    
+    public void addProduct(){
+        String query = "delete *\n"
+                + "from Product \n"
+                + "where id = ?";
+        try {
+ 
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
             
 }

@@ -12,6 +12,9 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+       <form action="redirectToManage" method="post">
+            <h2>Product management</h2>
+            <input type="submit" value="Go to">
+        </form>
     </body>
 </html>
