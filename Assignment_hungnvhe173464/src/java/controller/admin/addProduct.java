@@ -4,6 +4,7 @@
  */
 package controller.admin;
 
+import dal.ProductDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -33,9 +34,13 @@ public class addProduct extends HttpServlet {
             /* TODO output your page here. You may use following sample code. */
             String name = request.getParameter("name");
             String image = request.getParameter("image");
-            String price = request.getParameter("price");
+            int price = Integer.parseInt(request.getParameter("price"));
             String description = request.getParameter("description");
-            String category = request.getParameter("category");
+            int category = Integer.parseInt(request.getParameter("category"));
+            
+            ProductDAO productDAO = new ProductDAO();
+            productDAO.addProduct(name, price, image, description, category);
+            response.sendRedirect("redirectToManage");
         }
     }
 

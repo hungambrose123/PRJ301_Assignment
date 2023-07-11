@@ -167,7 +167,7 @@ public class ProductDAO {
     }
     
     public void deleteProductById(int id){
-        String query = "delete *\n"
+        String query = "delete \n"
                 + "from Product \n"
                 + "where id = ?";
         try {
@@ -196,11 +196,18 @@ public class ProductDAO {
         }
     }
     
-    public void addProduct(){
-        String query = "delete *\n"
-                + "from Product \n"
-                + "where id = ?";
+    public void addProduct(String name, int price,String image,String description,int categoryID){
+        String query = "insert into Product(name,price,image,description,category_id)\n"
+                + "values (?, ?, ?, ?, ?)";
         try {
+            connection = new DBContext().getConnection();
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, name);
+            preparedStatement.setInt(2, price);
+            preparedStatement.setString(3, image);
+            preparedStatement.setString(4, description);
+            preparedStatement.setInt(5, categoryID);
+            preparedStatement.executeUpdate();
  
         } catch (Exception e) {
             System.out.println(e);
