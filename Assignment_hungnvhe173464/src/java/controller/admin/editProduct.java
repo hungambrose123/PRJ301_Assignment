@@ -4,12 +4,16 @@
  */
 package controller.admin;
 
+import dal.ProductDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
+import model.Product;
+import model.ProductCategory;
 
 /**
  *
@@ -31,6 +35,17 @@ public class editProduct extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
+            ProductDAO productDAO = new ProductDAO();
+            int id = Integer.parseInt(request.getParameter("id"));
+            List<ProductCategory> productCategory = productDAO.getProductCategory();
+            
+            Product product = productDAO.getProductByID(id);
+            request.setAttribute("id", product.getId());
+            request.setAttribute("name", product.getName());
+            request.setAttribute("image", product.getImage());
+            request.setAttribute("price", product.getPrice());
+            request.setAttribute("description", product.getDescription());
+            request.setAttribute("productCategory", productCategory);
             request.getRequestDispatcher("/adminView/editProduct.jsp").forward(request, response);
         }
     }
@@ -61,7 +76,16 @@ public class editProduct extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        int id = Integer.parseInt(request.getParameter("id"));
+        String name = request.getParameter("name");
+        String image = request.getParameter("image");
+        int price = Integer.parseInt(request.getParameter("price"));
+        String description = request.getParameter("description");
+        int category = Integer.parseInt(request.getParameter("category"));
+
+        ProductDAO productDAO = new ProductDAO();
+        productDAO.editProductById(id, name, price, image, description, category);
+        response.sendRedirect("redirectToManage");
     }
 
     /**

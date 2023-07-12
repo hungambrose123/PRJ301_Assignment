@@ -181,14 +181,23 @@ public class ProductDAO {
         }
     }
     
-    public void editProductById(int id){
-        String query = "delete *\n"
-                + "from Product \n"
-                + "where id = ?";
+    public void editProductById(int id, String name, int price,String image,String description,int categoryID){
+        String query = "UPDATE [dbo].[Product]\n"
+                + "   SET [name] = ?\n"
+                + "      ,[price] = ?\n"
+                + "      ,[image] = ?\n"
+                + "      ,[description] = ?\n"
+                + "      ,[category_id] = ?\n"
+                + " WHERE id = ?";
         try {
             connection = new DBContext().getConnection();
             preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setInt(1, id);
+            preparedStatement.setString(1, name);
+            preparedStatement.setInt(2, price);
+            preparedStatement.setString(3, image);
+            preparedStatement.setString(4, description);
+            preparedStatement.setInt(5, categoryID);
+            preparedStatement.setInt(6, id);
             preparedStatement.executeUpdate();
 
         } catch (Exception e) {

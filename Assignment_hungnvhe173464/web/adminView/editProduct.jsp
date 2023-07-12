@@ -36,23 +36,35 @@
                             <h4 class="modal-title">Edit product</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         </div>
-                        <div class="modal-body">					
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label>ID</label>
+                                <input type="text" value="${id}" name="id" class="form-control" required>
+                            </div>
                             <div class="form-group">
                                 <label>Name</label>
-                                <input type="text" class="form-control" required>
+                                <input type="text" value="${name}" name="name" class="form-control" required>
                             </div>
                             <div class="form-group">
                                 <label>Image</label>
-                                <input type="email" class="form-control" required>
+                                <input type="text" value="${image}" name="image" class="form-control" required>
                             </div>
                             <div class="form-group">
                                 <label>Price</label>
-                                <input type="text" class="form-control" required>
+                                <input type="text" value="${price}" name="price" class="form-control" required>
                             </div>
                             <div class="form-group">
                                 <label>Description</label>
-                                <textarea class="form-control" required></textarea>
-                            </div>                          					
+                                <textarea class="form-control" name="description" required>${description}</textarea>
+                            </div>   
+                            <div class="form-group">
+                                    <label>Category</label>
+                                    <select name="category" class="form-select" aria-label="Default select example">
+                                        <c:forEach items="${productCategory}" var="o">
+                                            <option value="${o.id}">${o.name}</option>
+                                        </c:forEach>
+                                    </select>
+                            </div>                            
                         </div>
                         <div class="modal-footer">
                             <input type="button" class="btn btn-default" href="redirectToManage" value="Cancel">
