@@ -71,8 +71,8 @@
                             </td>
                             <td>${o.price} VND</td>
                             <td>
-                                <a href="edit?id=${o.id}"  class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                                <a href="delete?id=${o.id}" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                                <a href="edit?id=${o.id}"   class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                                <a href="delete?id=${o.id}" onclick="return confirm('Are you sure to delete this product?')" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
                             </td>
                         </tr>
                     </c:forEach>
@@ -182,7 +182,13 @@
         </div>
         <script src="js/manager.js" type="text/javascript"></script>
         <script>
-
+    document.getElementById("delete").addEventListener("submit", function() {
+   if (confirm("Are you sure to delete this product")) {
+      return true;
+   } else {
+      return false;
+   }
+            });
         </script>
     </body>
 </html>
