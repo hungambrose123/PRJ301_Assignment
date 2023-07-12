@@ -41,5 +41,9 @@ public class Item {
         quantity++;
     }
     
+    public void decrement(){
+        quantity--;
+    }
+    
     
 }

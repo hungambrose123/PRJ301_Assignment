@@ -38,7 +38,7 @@
                                 <a href="contact.html" class="nav-item nav-link">Contact</a>
                                 <a class="nav-item nav-link">--------</a>
                                 <a href="cart" class="nav-item nav-link">Shopping Cart</a>
-                                <a href="../userView/checkout.jsp" class="nav-item nav-link">Checkout</a>
+                                <a href="checkOut" class="nav-item nav-link">Checkout</a>
                                 <a class="nav-item nav-link">----------------</a>
                           
                             <div class="navbar-nav ml-auto py-0">

@@ -20,7 +20,7 @@ import model.Product;
  *
  * @author Warspite
  */
-public class CartServlet extends HttpServlet {
+public class updateCartQuantity extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,10 +39,10 @@ public class CartServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet CartServlet</title>");            
+            out.println("<title>Servlet updateCartQuantity</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet CartServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet updateCartQuantity at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -60,14 +60,36 @@ public class CartServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        HashMap<Integer, Item> cart = (HashMap<Integer, Item>) session.getAttribute("cart");
-        int numOfItem = cart.size();
-    
+        // "plus" or "minus" button to change product quantity
         
+        ProductDAO productDAO = new ProductDAO();
+        int productId = Integer.parseInt(request.getParameter("id"));
+        String action = request.getParameter("action");
+        Product product = productDAO.getProductByID(productId);
+
+        HttpSession session = request.getSession();
+        Item item;
+        HashMap<Integer, Item> cart = (HashMap<Integer, Item>) session.getAttribute("cart");
+        if (cart == null) {
+            cart = new HashMap<Integer, Item>();
+            item = new Item(product, 1);
+            cart.put(productId, item);
+        } else {
+            if (cart.containsKey(productId)) {
+                item = cart.get(productId);
+                if(action.equals("plus")){
+                   item.increment(); 
+                }else{
+                   item.decrement(); 
+                }
+                
+            } else {
+                item = new Item(product, 1);
+                cart.put(productId, item);
+            }
+        }
         session.setAttribute("cart", cart);
-        session.setAttribute("cartSize", numOfItem);
-        request.getRequestDispatcher("/userView/cart.jsp").forward(request, response);
+        response.sendRedirect("cart");
     }
 
     /**
@@ -81,9 +103,31 @@ public class CartServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        ProductDAO productDAO = new ProductDAO();
+        int productId = Integer.parseInt(request.getParameter("id"));
+        int quantity = Integer.parseInt(request.getParameter("quantity"));
+        Product product = productDAO.getProductByID(productId);
+
+        HttpSession session = request.getSession();
+        Item item;
+        HashMap<Integer, Item> cart = (HashMap<Integer, Item>) session.getAttribute("cart");
+        if (cart == null) {
+            cart = new HashMap<Integer, Item>();
+            item = new Item(product, quantity);
+            cart.put(productId, item);
+        } else {
+            if (cart.containsKey(productId)) {
+                item = cart.get(productId);
+                item.setQuantity(quantity);
+            } else {
+                item = new Item(product, quantity);
+                cart.put(productId, item);
+            }
+        }
+        session.setAttribute("cart", cart);
+        request.getRequestDispatcher("/userView/cart.jsp").forward(request, response);
     }
-    
+
     /**
      * Returns a short description of the servlet.
      *

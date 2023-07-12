@@ -4,7 +4,6 @@
  */
 package controller;
 
-import dal.ProductDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -14,13 +13,12 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
 import model.Item;
-import model.Product;
 
 /**
  *
  * @author Warspite
  */
-public class CartServlet extends HttpServlet {
+public class checkOutServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,10 +37,10 @@ public class CartServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet CartServlet</title>");            
+            out.println("<title>Servlet checkOutServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet CartServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet checkOutServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -61,13 +59,21 @@ public class CartServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
+        String username = request.getParameter("username");
+        String email = request.getParameter("email");
+        String address = request.getParameter("address");
+        String phoneNumber = request.getParameter("phoneNumber");
+        String totalMoney = request.getParameter("totalMoney");
         HashMap<Integer, Item> cart = (HashMap<Integer, Item>) session.getAttribute("cart");
-        int numOfItem = cart.size();
-    
         
         session.setAttribute("cart", cart);
-        session.setAttribute("cartSize", numOfItem);
-        request.getRequestDispatcher("/userView/cart.jsp").forward(request, response);
+        request.setAttribute("username", username);
+        request.setAttribute("email", email);
+        request.setAttribute("address", address);
+        request.setAttribute("phoneNumber", phoneNumber);
+        request.setAttribute("totalMoney", totalMoney);
+        request.getRequestDispatcher("/userView/checkout.jsp").forward(request, response);
+        
     }
 
     /**
@@ -83,7 +89,7 @@ public class CartServlet extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
     }
-    
+
     /**
      * Returns a short description of the servlet.
      *

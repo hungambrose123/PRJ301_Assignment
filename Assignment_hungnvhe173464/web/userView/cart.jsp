@@ -54,16 +54,18 @@
                                     <div class="input-group quantity mx-auto" style="width: 100px;">
                                         <!--                                    decrement-->
                                         <div class="input-group-btn">
-                                            <button href="cartCount?num=-1&id=${c.value.quantity}" class="btn btn-sm btn-primary btn-minus" >
-                                                <i class="fa fa-minus"></i>
+                                            <button  class="btn btn-sm btn-primary btn-minus" >
+                                                <a href="updateCartQuantity?id=${c.value.product.id}&action=minus"><i class="fa fa-minus"></i></a>
                                             </button>
                                         </div>
                                         <!--                                            number of item-->
-                                        <input type="text" class="form-control form-control-sm bg-secondary text-center" value="${c.value.quantity}">
+                                        <form action="updateCartQuantity?id=${c.value.product.id}" method="post">
+                                            <input type="text" class="form-control form-control-sm bg-secondary text-center" value="${c.value.quantity}" name="quantity"> 
+                                        </form>
                                         <!--                                    increment-->
                                         <div class="input-group-btn">
                                             <button class="btn btn-sm btn-primary btn-plus">
-                                                <a href="buy?id=${c.value.product.id}"><i class="fa fa-plus"></i></a>
+                                                <a href="updateCartQuantity?id=${c.value.product.id}&action=plus"><i class="fa fa-plus"></i></a>
                                             </button>  
                                         </div>
                                     </div>
@@ -101,11 +103,13 @@
                         </div>
                     </div>
                     <div class="card-footer border-secondary bg-transparent">
-                        <div class="d-flex justify-content-between mt-2">
+                        <form action="checkOut?subTotal=${subTotal}" method="get">
+                            <div class="d-flex justify-content-between mt-2">
                             <h5 class="font-weight-bold">Total</h5>
                             <h5 class="font-weight-bold">${subTotal + 24000} VND</h5>
                         </div>
-                        <button class="btn btn-block btn-primary my-3 py-3">Proceed To Checkout</button>
+                        <button type="submit" class="btn btn-block btn-primary my-3 py-3">Proceed To Checkout</button>
+                        </form>
                     </div>
                 </div>
             </div>
