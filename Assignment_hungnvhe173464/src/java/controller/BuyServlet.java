@@ -10,10 +10,13 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.List;
 import model.Cart;
+import model.Item;
 import model.Product;
 
 /**
@@ -61,29 +64,27 @@ public class BuyServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         ProductDAO productDAO = new ProductDAO();
-        List<Product> list = productDAO.getAllProduct();
-        Cookie[] arr = request.getCookies();
-        String txt = "";
-        if (arr != null) {
-            for (Cookie o : arr) {
-                if (o.getName().equals("cart")) {
-                    txt += o.getValue();
-                    o.setMaxAge(0);
-                    response.addCookie(o);
-                }
+        int productId = Integer.parseInt(request.getParameter("id"));
+        Product product = productDAO.getProductByID(productId);
+
+        HttpSession session = request.getSession();
+        Item item;
+        HashMap<Integer, Item> cart = (HashMap<Integer, Item>) session.getAttribute("cart");
+        if (cart == null) {
+            cart = new HashMap<Integer, Item>();
+            item = new Item(product, 1);
+            cart.put(productId, item);
+        } else {
+            if (cart.containsKey(productId)) {
+                item = cart.get(productId);
+                item.increment();
+            } else {
+                item = new Item(product, 1);
+                cart.put(productId, item);
             }
         }
-        String num = request.getParameter("quantity");
-        String id = request.getParameter("id");
-        if(txt.isEmpty()){
-            txt=id+":"+num;
-        }else{
-            txt = txt+","+id+":"+num;
-        }
-        Cookie c = new Cookie("cart", txt);
-        c.setMaxAge(2*24*60*60);
-        response.addCookie(c);
-        request.getRequestDispatcher("cart").forward(request, response);
+        session.setAttribute("cart", cart);
+        response.sendRedirect("cart");
     }
 
     /**

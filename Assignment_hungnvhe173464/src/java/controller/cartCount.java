@@ -60,20 +60,7 @@ public class cartCount extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        ProductDAO productDAO = new ProductDAO();
-        List<Product> list = productDAO.getAllProduct();
-        Cookie[] arr = request.getCookies();
-        String txt ="";
-        if(arr!=null){
-            for(Cookie o: arr){
-                if(o.getName().equals("cart")){
-                    txt += o.getValue();
-                }
-            }
-        }
-        Cart cart = new Cart(txt, list);
-        request.setAttribute("cart", txt);
-        request.getRequestDispatcher("/userView/cart.jsp").forward(request, response);
+       
     }
 
     /**

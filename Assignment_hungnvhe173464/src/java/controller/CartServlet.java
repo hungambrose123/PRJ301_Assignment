@@ -6,14 +6,13 @@ package controller;
 
 import dal.ProductDAO;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
-import model.Cart;
+import java.util.HashMap;
 import model.Item;
 import model.Product;
 
@@ -61,28 +60,13 @@ public class CartServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        ProductDAO productDAO = new ProductDAO();
-        List<Product> list = productDAO.getAllProduct();
-        Cookie[] arr = request.getCookies();
-        String txt ="";
-        if(arr!=null){
-            for(Cookie o: arr){
-                if(o.getName().equals("cart")){
-                    txt += o.getValue();
-                }
-            }
-        }
-        Cart cart = new Cart(txt, list);
-        List<Item> itemList = cart.getItem();
-        int n;
-        if(itemList!=null ){
-            n = itemList.size();
-        }else{
-            n =0;
-        }
+        HttpSession session = request.getSession();
+        HashMap<Integer, Item> cart = (HashMap<Integer, Item>) session.getAttribute("cart");
+        int numOfItem = cart.size();
+    
         
-        request.setAttribute("size", n);
-        request.setAttribute("cart", itemList);
+        session.setAttribute("cart", cart);
+        session.setAttribute("cartSize", numOfItem);
         request.getRequestDispatcher("/userView/cart.jsp").forward(request, response);
     }
 

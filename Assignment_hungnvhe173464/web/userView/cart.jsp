@@ -36,7 +36,6 @@
                 <table class="table table-bordered text-center mb-0">
                     <thead class="bg-secondary text-dark">
                         <tr>
-                            <th>Number</th>
                             <th>Products</th>
                             <th>Price</th>
                             <th>Quantity</th>
@@ -44,35 +43,37 @@
                             <th>Remove</th>
                         </tr>
                     </thead>
-                    <tbody class="align-middle"> <% /* %>
-                    <c:set var="o" value="${requestScope.cart}"></c:set>
-                    <c:set var="tt" value="0"></c:set>
-                    <c:forEach items="${o.item}" var="i">
-                        <c:set var="tt" value="${tt+1}"></c:set>
-                        <tr>
-                            <td class="align-middle">${tt}</td>  
-                            <td class="align-middle"><img src="${i.product.image}" alt="" style="width: 50px;">${i.product.name}</td>
-                            <td class="align-middle">${i.product.price}</td>
-                            <td class="align-middle">
-                                <div class="input-group quantity mx-auto" style="width: 100px;">
-                                    <div class="input-group-btn">
-                                        <button href="cartCount?num=-1&id=${i.product.id}" class="btn btn-sm btn-primary btn-minus" >
-                                            <i class="fa fa-minus"></i>
-                                        </button>
+                    <tbody class="align-middle">
+                    <c:if test="${not empty cart}">
+                        <c:set var="subTotal" value="0"></c:set>
+                        <c:forEach items="${cart}" var="c">
+                            <tr>
+                                <td class="align-middle"> <img src="${c.value.product.image}" alt="" style="width: 50px;">${c.value.product.name}</td>  
+                                <td class="align-middle">${c.value.product.price}</td>
+                                <td class="align-middle">
+                                    <div class="input-group quantity mx-auto" style="width: 100px;">
+                                        <!--                                    decrement-->
+                                        <div class="input-group-btn">
+                                            <button href="cartCount?num=-1&id=${c.value.quantity}" class="btn btn-sm btn-primary btn-minus" >
+                                                <i class="fa fa-minus"></i>
+                                            </button>
+                                        </div>
+                                        <!--                                            number of item-->
+                                        <input type="text" class="form-control form-control-sm bg-secondary text-center" value="${c.value.quantity}">
+                                        <!--                                    increment-->
+                                        <div class="input-group-btn">
+                                            <button class="btn btn-sm btn-primary btn-plus">
+                                                <a href="buy?id=${c.value.product.id}"><i class="fa fa-plus"></i></a>
+                                            </button>  
+                                        </div>
                                     </div>
-                                    <input type="text" class="form-control form-control-sm bg-secondary text-center" value="${i.quantity}">
-                                    <div href="cartCount?num=1&id=${i.product.id}" class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-plus">
-                                            <i class="fa fa-plus"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="align-middle">${i.quantity * i.product.price}</td>
-                            <td class="align-middle"><button class="btn btn-sm btn-primary"><i class="fa fa-times"></i></button></td>
-                        </tr>
-                    </c:forEach> 
-                         <% */ %>
+                                </td>
+                                <td class="align-middle">${c.value.quantity * c.value.product.price} VND</td>
+                                <td class="align-middle"><button class="btn btn-sm btn-primary"><i class="fa fa-times"></i></button></td>
+                            </tr>
+                            <c:set var="subTotal" value="${subTotal + (c.value.quantity * c.value.product.price)}"></c:set>
+                        </c:forEach>  
+                    </c:if>
                     </tbody>
                 </table>
             </div>
@@ -92,17 +93,17 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-between mb-3 pt-1">
                             <h6 class="font-weight-medium">Subtotal</h6>
-                            <h6 class="font-weight-medium">$150</h6>
+                            <h6 class="font-weight-medium">${subTotal} VND</h6>
                         </div>
                         <div class="d-flex justify-content-between">
                             <h6 class="font-weight-medium">Shipping</h6>
-                            <h6 class="font-weight-medium">$10</h6>
+                            <h6 class="font-weight-medium">24000 VND</h6>
                         </div>
                     </div>
                     <div class="card-footer border-secondary bg-transparent">
                         <div class="d-flex justify-content-between mt-2">
                             <h5 class="font-weight-bold">Total</h5>
-                            <h5 class="font-weight-bold">$160</h5>
+                            <h5 class="font-weight-bold">${subTotal + 24000} VND</h5>
                         </div>
                         <button class="btn btn-block btn-primary my-3 py-3">Proceed To Checkout</button>
                     </div>

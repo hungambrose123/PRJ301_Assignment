@@ -81,12 +81,12 @@
                     <div class="row pb-3">
                         <div class="col-12 pb-1">
                             <div class="d-flex align-items-center justify-content-between mb-4">
-                                <form action="searchProductByName">
+                                <form name="searchProduct2" action="searchProductByName" method="get">
                                     <div class="input-group">
                                         <input type="text" class="form-control" placeholder="Search by name" name="searchByName">
                                         <div class="input-group-append">
-                                            <span class="input-group-text bg-transparent text-primary">
-                                                <i class="fa fa-search"></i>
+                                            <span class="input-group-text bg-transparent text-primary btn" onclick="searchProduct2.submit()" >
+                                                <i  class="fa fa-search"></i>
                                             </span>
                                         </div>
                                     </div>
@@ -120,7 +120,7 @@
                                        </div>
                                        <div class="card-footer d-flex justify-content-between bg-light border">
                                            <a href="productDetails?productId=${p.id}" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
-                                           <a href="buy?id=${p.id}&&quantity=1" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
+                                           <a href="buy?id=${p.id}" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
                                        </div>
                                    </div>        
                                </div>
