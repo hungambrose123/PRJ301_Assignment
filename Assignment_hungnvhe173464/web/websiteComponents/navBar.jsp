@@ -6,7 +6,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="jakarta.servlet.http.HttpSession" %>
-
 <jsp:include page="../websiteComponents/headMetadata.jsp"></jsp:include>
 
 <div class="container-fluid">
@@ -36,23 +35,31 @@
                             <div class="navbar-nav mr-auto py-0">
                                 <a href="productServlet" class="nav-item nav-link active">Home</a>
                                 <a href="contact.html" class="nav-item nav-link">Contact</a>
-                                <a class="nav-item nav-link">--------</a>
+                            </div>
+                            
+                            <div class="navbar-nav mr-auto py-0">
                                 <a href="cart" class="nav-item nav-link">Shopping Cart</a>
                                 <a href="checkOut" class="nav-item nav-link">Checkout</a>
-                                <a class="nav-item nav-link">----------------</a>
-                          
-                            <div class="navbar-nav ml-auto py-0">
-                                <% if (session.getAttribute("username") == null || session.getAttribute("username").equals("")){ %>
+                                <c:if test="${sessionScope.account.isAdmin == true}">
+                                    <a href="redirectToManage" class="nav-item nav-link">Management</a>
+                            </c:if>
+                            </div>
+                            
+                            <div class="navbar-nav mr-auto py-0">
+                                <c:if test="${sessionScope.account.isAdmin == true}">
+                                <a href="redirectToManage" class="nav-item nav-link">Management</a
+                                </c:if>
+                                <% if (session.getAttribute("account") == null){ %>
                                 <a href="login" class="nav-item nav-link">Login</a>
                                 <a href="register" class="nav-item nav-link">Register</a>
                                 <%
                                     } else{ %>
-                                    <p class="nav-item nav-link">Hello, ${sessionScope.username}</p>
+                                    <p class="nav-item nav-link">Hello, ${sessionScope.account.name}</p>
                                     <a href="logout" class="nav-item nav-link">Logout</a>
                                  <%   }
                                 %>
-                                
                             </div>
+                            
                         </div>
                     </nav>
                 </div>

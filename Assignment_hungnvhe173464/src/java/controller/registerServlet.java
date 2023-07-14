@@ -11,6 +11,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import model.Account;
 
 /**
  *
@@ -68,8 +69,10 @@ public class registerServlet extends HttpServlet {
             String username = request.getParameter("user");
             String password = request.getParameter("pass");
             String email = request.getParameter("email");
+            
+            Account newAcc = new Account(username,password,email,false);
+            accountDAO.AddNewAccount(newAcc);
 
-            accountDAO.AddNewAccount(username, password, email);
             request.setAttribute("message", message);
             request.getRequestDispatcher("/userView/register.jsp").forward(request, response);
         } catch (Exception e) {

@@ -7,6 +7,7 @@ package dal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import model.Account;
 
 /**
  *
@@ -17,8 +18,7 @@ public class AccountDAO {
     PreparedStatement preparedStatement = null;
     ResultSet resultSet = null;
     
-    public boolean checkLogin(String username, String password){
-        boolean check = false;
+    public Account getAccount(Account acc){
         String query = "select * \n" +
                         "from Account \n" +
                         "where username = ? and password = ?";
@@ -26,39 +26,41 @@ public class AccountDAO {
             
             connection = new DBContext().getConnection();
             preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1, username);
-            preparedStatement.setString(2, password);
+            preparedStatement.setString(1, acc.getName());
+            preparedStatement.setString(2, acc.getPassword());
             resultSet = preparedStatement.executeQuery();
             
             if(resultSet.next()){
-                check= true;
-            }else{
-                check = false;
+                Account account = new Account(resultSet.getString(2),resultSet.getString(3),resultSet.getString(4),resultSet.getBoolean(5));
+                return account;
             }
-            
+                
         } catch(Exception e){
             System.out.println(e);
         }
         
-        return check;
+        return null;
     }
     
-    public void AddNewAccount(String username, String password, String email){
+    public void AddNewAccount(Account acc){
         String query = "INSERT INTO [dbo].[Account]\n"
                 + "           ([username]\n"
                 + "           ,[password]\n"
-                + "           ,[email])\n"
+                + "           ,[email]\n"
+                + "           ,[isAdmin])\n"
                 + "     VALUES\n"
                 + "           (?\n"
+                + "           ,?\n"
                 + "           ,?\n"
                 + "           ,?)";
         try {
 
             connection = new DBContext().getConnection();
             preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1, username);
-            preparedStatement.setString(2, password);
-            preparedStatement.setString(3, email);
+            preparedStatement.setString(1, acc.getName());
+            preparedStatement.setString(2, acc.getPassword());
+            preparedStatement.setString(3, acc.getEmail());
+            preparedStatement.setBoolean(4, acc.isIsAdmin());
             preparedStatement.executeUpdate();
 
         } catch (Exception e) {

@@ -13,6 +13,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import model.Account;
 
 /**
  *
@@ -70,15 +71,16 @@ public class loginCheck extends HttpServlet {
             AccountDAO accountDAO = new AccountDAO();
             String u = request.getParameter("user");
             String p = request.getParameter("pass");
-            boolean loginCheck = accountDAO.checkLogin(u, p);
+            Account accountCheck =  new Account(u,p,"",false);
+            Account account = accountDAO.getAccount(accountCheck);
             String result = "";
 
-            if (loginCheck) {
+            if (account!=null) {
                 result = "Login Successful! Click the link below to return to main page";
                 HttpSession session = request.getSession();
 
                 request.setAttribute("result", result);
-                session.setAttribute("username", u);
+                session.setAttribute("account", account);              
                 request.getRequestDispatcher("/userView/login.jsp").forward(request, response);
             } else {
                 result = "Login fail! please try again";
