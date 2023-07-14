@@ -62,8 +62,11 @@ public class CartServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         HashMap<Integer, Item> cart = (HashMap<Integer, Item>) session.getAttribute("cart");
+        
+        
         int numOfItem = cart.size();
 
+        
         session.setAttribute("cart", cart);
         session.setAttribute("cartSize", numOfItem);
         request.getRequestDispatcher("/userView/cart.jsp").forward(request, response);

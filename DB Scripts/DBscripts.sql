@@ -19,13 +19,15 @@ create table Product(
 	name nvarchar(50),
 	price int,
 	image nvarchar(200),
-	description nvarchar(200),
+	description nvarchar(1500),
 	category_id int foreign key references  Product_category(id) not null
 )
 
 create table Order_details(
 	id int identity(1,1) primary key not null,
 	total int,
+	phoneNum int,
+	customerAddress nvarchar(100),
 	payment_id int,
 	account_id int foreign key references Account(id)
 )

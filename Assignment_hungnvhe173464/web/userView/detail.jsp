@@ -56,12 +56,12 @@
                     <h3 class="font-weight-semi-bold mb-4">${product.price} VND</h3>
                     <p class="mb-4">${product.description}</p>
                     <div class="d-flex mb-3">
-                        <p class="text-dark font-weight-medium mb-0 mr-3">Sizes:</p>
+                        <p class="text-dark font-weight-medium mb-0 mr-3">Quantity:</p>
                     </div>
                     <div class="d-flex align-items-center mb-4 pt-2">
                         <div class="input-group quantity mr-3" style="width: 130px;">
                             <div class="input-group-btn">
-                                <button class="btn btn-primary btn-minus" >
+                                <<button class="btn btn-primary btn-minus" >
                                     <i class="fa fa-minus"></i>
                                 </button>
                             </div>
@@ -72,7 +72,7 @@
                                 </button>
                             </div>
                         </div>
-                        <button class="btn btn-primary px-3"><i class="fa fa-shopping-cart mr-1"></i> Add To Cart</button>
+                        <a href="buy?id=${product.id}" ><button class="btn btn-primary px-3"><i class="fa fa-shopping-cart mr-1"></i> Add To Cart</button></a>
                     </div>
                     <div class="d-flex pt-2">
                         <p class="text-dark font-weight-medium mb-0 mr-2">Share on:</p>

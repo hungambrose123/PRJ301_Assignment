@@ -17,7 +17,7 @@
                     <p>Our shop info</p>
                     <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>123 Street, Hanoi, Viet Nam</p>
                     <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>hungnvhe173464@efpt.edu.vn</p>
-                    <p class="mb-0"><i class="fa fa-phone-alt text-primary mr-3"></i>+056 345 23456</p>
+                    <p class="mb-0"><i class="fa fa-phone-alt text-primary mr-3"></i>(+56) 034 234 54645</p>
                 </div>
                 <div class="col-lg-8 col-md-12">
                     <div class="row">

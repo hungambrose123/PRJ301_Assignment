@@ -2,22 +2,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package controller.admin;
+package controller;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
-import model.Account;
 
 /**
  *
  * @author Warspite
  */
-public class redirectToManage extends HttpServlet {
+public class contactServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,18 +31,7 @@ public class redirectToManage extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            
-            HttpSession session = request.getSession();
-            Account acc = (Account) session.getAttribute("account");
-            if(acc == null){
-                out.println("Access denied!");
-            }
-            
-            if (acc.isIsAdmin()) {
-               request.getRequestDispatcher("GetAllProduct").forward(request, response);
-            }else{
-                out.println("Access denied!");
-            }
+            request.getRequestDispatcher("/userView/contact.jsp").forward(request, response);
         }
     }
 
@@ -60,7 +47,7 @@ public class redirectToManage extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request,response);
+        processRequest(request, response);
     }
 
     /**
@@ -74,7 +61,7 @@ public class redirectToManage extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request,response);
+        processRequest(request, response);
     }
 
     /**

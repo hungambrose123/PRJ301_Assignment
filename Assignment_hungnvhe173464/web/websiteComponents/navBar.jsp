@@ -34,11 +34,11 @@
                         <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                             <div class="navbar-nav mr-auto py-0">
                                 <a href="productServlet" class="nav-item nav-link active">Home</a>
-                                <a href="contact.html" class="nav-item nav-link">Contact</a>
+                                <a href="contact" class="nav-item nav-link">Contact</a>
                             </div>
                             
                             <div class="navbar-nav mr-auto py-0">
-                                <a href="cart" class="nav-item nav-link">Shopping Cart</a>
+                                <a href="removeProductFromCart?id=234" class="nav-item nav-link">Shopping Cart</a>
                                 <a href="checkOut" class="nav-item nav-link">Checkout</a>
                                 <c:if test="${sessionScope.account.isAdmin == true}">
                                     <a href="redirectToManage" class="nav-item nav-link">Management</a>
@@ -46,9 +46,6 @@
                             </div>
                             
                             <div class="navbar-nav mr-auto py-0">
-                                <c:if test="${sessionScope.account.isAdmin == true}">
-                                <a href="redirectToManage" class="nav-item nav-link">Management</a
-                                </c:if>
                                 <% if (session.getAttribute("account") == null){ %>
                                 <a href="login" class="nav-item nav-link">Login</a>
                                 <a href="register" class="nav-item nav-link">Register</a>

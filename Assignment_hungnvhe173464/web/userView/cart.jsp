@@ -51,27 +51,21 @@
                                 <td class="align-middle"> <img src="${c.value.product.image}" alt="" style="width: 50px;">${c.value.product.name}</td>  
                                 <td class="align-middle">${c.value.product.price}</td>
                                 <td class="align-middle">
-                                    <div class="input-group quantity mx-auto" style="width: 100px;">
-                                        <!--                                    decrement-->
-                                        <div class="input-group-btn">
-                                            <button  class="btn btn-sm btn-primary btn-minus" >
-                                                <a href="updateCartQuantity?id=${c.value.product.id}&action=minus"><i class="fa fa-minus"></i></a>
-                                            </button>
-                                        </div>
-                                        <!--                                            number of item-->
+                                     <div class="input-group quantity mx-auto text-center" style="width: 50px;">
+                                         <span>
+                                        <!--    increment-->
+                                        <a href="updateCartQuantity?id=${c.value.product.id}&action=plus" class="fa fa-plus"></a>    
+                                        <!--   number of item-->
                                         <form action="updateCartQuantity?id=${c.value.product.id}" method="post">
                                             <input type="text" class="form-control form-control-sm bg-secondary text-center" value="${c.value.quantity}" name="quantity"> 
                                         </form>
-                                        <!--                                    increment-->
-                                        <div class="input-group-btn">
-                                            <button class="btn btn-sm btn-primary btn-plus">
-                                                <a href="updateCartQuantity?id=${c.value.product.id}&action=plus"><i class="fa fa-plus"></i></a>
-                                            </button>  
-                                        </div>
-                                    </div>
+                                         <!-- decrement-->
+                                          <a href="updateCartQuantity?id=${c.value.product.id}&action=minus" class="fa fa-minus"></a> 
+                                         </span>            
+                                    </div>    
                                 </td>
                                 <td class="align-middle">${c.value.quantity * c.value.product.price} VND</td>
-                                <td class="align-middle"><button class="btn btn-sm btn-primary"><i class="fa fa-times"></i></button></td>
+                                <td class="align-middle"><a href="removeProductFromCart?id=${c.value.product.id}"<button class="btn btn-sm btn-primary"><i class="fa fa-times"></i></button></td>
                             </tr>
                             <c:set var="subTotal" value="${subTotal + (c.value.quantity * c.value.product.price)}"></c:set>
                         </c:forEach>  

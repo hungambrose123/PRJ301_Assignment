@@ -39,32 +39,11 @@
                     <div class="row">
                         <div class="col-md-6 form-group">
                             <label>Username</label>
-                            <input class="form-control" type="text" placeholder="John"  value="${sessionScope.username}" disabled>
+                            <input class="form-control" type="text" placeholder="John"  value="${sessionScope.account.name}" disabled>
                         </div>
                         <div class="col-md-6 form-group">
                             <label>E-mail</label>
-                            <input class="form-control" type="text" placeholder="example@email.com" value="${sessionScope.email}" disabled>
-                        </div>
-                        <div class="col-md-6 form-group">
-                            <label>Phone number</label>
-                            <input class="form-control" type="text" placeholder="+123 456 789">
-                        </div>
-                        <div class="col-md-6 form-group">
-                            <label>Address</label>
-                            <input class="form-control" type="text" placeholder="123 Street">
-                        </div>
-                    </div>
-                </div>
-                <div class="collapse mb-4" id="shipping-address">
-                    <h4 class="font-weight-semi-bold mb-4">Shipping Address</h4>
-                    <div class="row">
-                        <div class="col-md-6 form-group">
-                            <label>Username</label>
-                            <input class="form-control" type="text" placeholder="John">
-                        </div>
-                        <div class="col-md-6 form-group">
-                            <label>E-mail</label>
-                            <input class="form-control" type="text" placeholder="example@email.com">
+                            <input class="form-control" type="text" placeholder="example@email.com" value="${sessionScope.account.email}" disabled>
                         </div>
                         <div class="col-md-6 form-group">
                             <label>Phone number</label>
