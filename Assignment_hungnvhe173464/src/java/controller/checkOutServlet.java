@@ -59,19 +59,18 @@ public class checkOutServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        String username = request.getParameter("username");
-        String email = request.getParameter("email");
+        
+        String username = (String) session.getAttribute("user");
+     //   String email = (String) session.getAttribute("email");
         String address = request.getParameter("address");
         String phoneNumber = request.getParameter("phoneNumber");
-        String totalMoney = request.getParameter("totalMoney");
         HashMap<Integer, Item> cart = (HashMap<Integer, Item>) session.getAttribute("cart");
         
         session.setAttribute("cart", cart);
         request.setAttribute("username", username);
-        request.setAttribute("email", email);
+     //   request.setAttribute("email", email);
         request.setAttribute("address", address);
         request.setAttribute("phoneNumber", phoneNumber);
-        request.setAttribute("totalMoney", totalMoney);
         request.getRequestDispatcher("/userView/checkout.jsp").forward(request, response);
         
     }

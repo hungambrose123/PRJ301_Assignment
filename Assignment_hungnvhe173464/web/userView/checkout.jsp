@@ -39,11 +39,11 @@
                     <div class="row">
                         <div class="col-md-6 form-group">
                             <label>Username</label>
-                            <input class="form-control" type="text" placeholder="John">
+                            <input class="form-control" type="text" placeholder="John"  value="${sessionScope.username}" disabled>
                         </div>
                         <div class="col-md-6 form-group">
                             <label>E-mail</label>
-                            <input class="form-control" type="text" placeholder="example@email.com">
+                            <input class="form-control" type="text" placeholder="example@email.com" value="${sessionScope.email}" disabled>
                         </div>
                         <div class="col-md-6 form-group">
                             <label>Phone number</label>
