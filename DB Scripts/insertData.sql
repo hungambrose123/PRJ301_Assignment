@@ -5,7 +5,6 @@ values(1, 'Writing instruments'),
 	  (3, 'Books'),
 	  (4, 'Office accessories')
 
-
 insert into Product(name,price,image,description,category_id)
 values ('Deli Gel pen 575A 0.5mm', 3000, 'https://salt.tikicdn.com/cache/750x750/ts/product/ac/b5/49/e6ef6869cd604b7adbc9fe29ba713e71.jpg.webp', 'Deli quick-drying, smooth gel pen. Safe to use and economical', 1),
 		('Staedtler Mars Technico 780C lead holder', 180000, 'https://bebinhvn.com/sites/default/files/products/2020-03/780C.jpg', 'Durable german-made lead holder, great for artist and architect', 1),
@@ -19,3 +18,7 @@ values ('Deli Gel pen 575A 0.5mm', 3000, 'https://salt.tikicdn.com/cache/750x750
 		('B5 TUANVIET caro spiral notebook', 30000, 'https://salt.tikicdn.com/cache/750x750/ts/product/2c/7b/16/88a55ce350150e714fcb2278521056dd.png.webp', 'High quality notebook, 200 pages, 90-100gsm paper', 2),
 		('B5 Campus NNB-BLAS120 notebook (quantity: 5)', 71000, 'https://salt.tikicdn.com/cache/750x750/ts/product/e1/6f/bc/551f135320d057a4eba3ac42024d7d0d.jpg.webp', 'High quality notebook for student,120 pages per notebook, 70gsm paper', 2),
 		('B5 Gradient Crabit notebook', 12000, 'https://salt.tikicdn.com/cache/750x750/ts/product/a5/f0/51/7b2e78e55c92cae2fdeddadb1631cca7.jpg.webp', 'High quality thin notebook, 80 pages', 2)
+
+insert into Account(username,password, email, isAdmin)
+values('hungnvhe173464','12345','hungnvhe173464@gmail.com',1),
+	 ('abc','123','abc@gmail.com',0)

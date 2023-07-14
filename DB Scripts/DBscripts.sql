@@ -5,7 +5,8 @@ create table Account(
 	id int identity(1,1) primary key not null,
 	username nvarchar(50) not null,
 	password nvarchar(50) not null,
-	email nvarchar(50)
+	email nvarchar(50),
+	isAdmin bit not null
 )
 
 create table Product_category(
