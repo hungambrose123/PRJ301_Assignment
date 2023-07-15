@@ -222,5 +222,25 @@ public class ProductDAO {
             System.out.println(e);
         }
     }
+    
+    public String getCategoryName(int id){
+        String query = "select name\n"
+                + "from Product_category\n"
+                + "where id=?";
+        try {
+            connection = new DBContext().getConnection();
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, id);
+            resultSet = preparedStatement.executeQuery();
+            
+            if(resultSet.next()){
+                return resultSet.getString(1);
+            }
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return null;
+    }
             
 }

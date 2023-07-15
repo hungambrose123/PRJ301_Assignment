@@ -45,6 +45,7 @@ public class editProduct extends HttpServlet {
             request.setAttribute("image", product.getImage());
             request.setAttribute("price", product.getPrice());
             request.setAttribute("description", product.getDescription());
+            request.setAttribute("category", product.getCategoryID());
             request.setAttribute("productCategory", productCategory);
             request.getRequestDispatcher("/adminView/editProduct.jsp").forward(request, response);
         }

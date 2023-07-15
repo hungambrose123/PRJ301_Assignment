@@ -42,7 +42,7 @@ public class AccountDAO {
         return null;
     }
     
-    public void AddNewAccount(Account acc){
+    public void AddNewAccount(Account acc) {
         String query = "INSERT INTO [dbo].[Account]\n"
                 + "           ([username]\n"
                 + "           ,[password]\n"

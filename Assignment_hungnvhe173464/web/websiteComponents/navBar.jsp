@@ -38,7 +38,7 @@
                             </div>
                             
                             <div class="navbar-nav mr-auto py-0">
-                                <a href="removeProductFromCart?id=234" class="nav-item nav-link">Shopping Cart</a>
+                                <a href="cart" class="nav-item nav-link">Shopping Cart</a>
                                 <a href="checkOut" class="nav-item nav-link">Checkout</a>
                                 <c:if test="${sessionScope.account.isAdmin == true}">
                                     <a href="redirectToManage" class="nav-item nav-link">Management</a>

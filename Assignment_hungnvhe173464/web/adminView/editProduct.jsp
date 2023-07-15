@@ -61,13 +61,13 @@
                                     <label>Category</label>
                                     <select name="category" class="form-select" aria-label="Default select example">
                                         <c:forEach items="${productCategory}" var="o">
-                                            <option value="${o.id}">${o.name}</option>
+                                            <option value="${o.id}" ${o.id==category?"selected":""}>${o.name}</option>
                                         </c:forEach>
                                     </select>
                             </div>                            
                         </div>
                         <div class="modal-footer">
-                            <input type="button" class="btn btn-default" href="redirectToManage" value="Cancel">
+                            <a href="redirectToManage"><input type="button" class="btn btn-default"  value="Cancel"></a>
                             <input type="submit" class="btn btn-info" value="Save">
                         </div>
                     </form>
