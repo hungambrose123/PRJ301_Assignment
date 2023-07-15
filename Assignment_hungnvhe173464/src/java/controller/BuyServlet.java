@@ -83,7 +83,7 @@ public class BuyServlet extends HttpServlet {
         session.setAttribute("cart", cart);
         response.sendRedirect("cart");
     }
-
+    
     /**
      * Handles the HTTP <code>POST</code> method.
      *
