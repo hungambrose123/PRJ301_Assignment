@@ -30,12 +30,12 @@
         <!-- Page Header End -->
 
 
-        <!-- Shop Start -->
+<!--         Shop Start 
         <div class="container-fluid pt-5">
             <div class="row px-xl-5">
-                <!-- Shop Sidebar Start -->
+                 Shop Sidebar Start 
                 <div class="col-lg-3 col-md-12">
-                    <!-- Price Start -->
+                     Price Start 
                     <div class="border-bottom mb-4 pb-4">
                         <h5 class="font-weight-semi-bold mb-4">Filter by price</h5>
                         <form>
@@ -71,13 +71,13 @@
                             </div>
                         </form>
                     </div>
-                    <!-- Price End -->
+                     Price End 
                 </div>
-                <!-- Shop Sidebar End -->
+                 Shop Sidebar End -->
 
 
                 <!-- Shop Product Start -->
-                <div class="col-lg-9 col-md-12">
+                <div class="col-lg-12 col-md-12">
                     <div class="row pb-3">
                         <div class="col-12 pb-1">
                             <div class="d-flex align-items-center justify-content-between mb-4">
@@ -96,7 +96,7 @@
                    <!-- product item-->
                            
                            <c:forEach items="${productList}" var="p">
-                               <div class="col-lg-4 col-md-6 col-sm-12 pb-1">
+                               <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
                                    <div class="card product-item border-0 mb-4">
                                        <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
                                            <img class="img-fluid w-100" src="${p.image}" alt="productImage">

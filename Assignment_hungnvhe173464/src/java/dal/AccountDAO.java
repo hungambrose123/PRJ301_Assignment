@@ -68,4 +68,25 @@ public class AccountDAO {
         }
     }
     
+    public int getAccountIdByName(String name) {
+        String query = "SELECT [id]\n"
+                + "  FROM [dbo].[Account]\n"
+                + "  where username = ?";
+        try {
+
+            connection = new DBContext().getConnection();
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, name);
+            resultSet = preparedStatement.executeQuery();
+            
+            while(resultSet.next()){
+                return resultSet.getInt(1);
+            }
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return 0;
+    }
+    
 }

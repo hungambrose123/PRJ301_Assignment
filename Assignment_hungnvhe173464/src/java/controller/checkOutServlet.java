@@ -4,6 +4,9 @@
  */
 package controller;
 
+import dal.AccountDAO;
+import dal.OrderDAO;
+import dal.ProductDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -12,7 +15,10 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
+import java.util.Random;
+import model.Account;
 import model.Item;
+import model.OrderDetails;
 
 /**
  *
@@ -86,7 +92,26 @@ public class checkOutServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+         HttpSession session = request.getSession();
+         AccountDAO accDAO = new AccountDAO();
+         OrderDAO orderDAO = new OrderDAO();
+         
+         
+         int number = Integer.parseInt(request.getParameter("number"));
+         String address = request.getParameter("address");
+         
+         int totalMoney = Integer.parseInt(request.getParameter("totalMoney"));
+         Account account = (Account) session.getAttribute("account");
+         int accountId = accDAO.getAccountIdByName(account.getName());
+         String email = account.getEmail();
+         
+         //insert into database
+         OrderDetails od = new OrderDetails(totalMoney,email,number,address,accountId);
+         orderDAO.insertOrder(od);
+  
+
+         request.setAttribute("message", "Order successful! We will contact you soon");
+         request.getRequestDispatcher("/userView/checkout.jsp").forward(request, response);
     }
 
     /**

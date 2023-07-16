@@ -63,7 +63,7 @@ public class productServlet extends HttpServlet {
         
         int productListSize = allProduct.size();
         
-        int productsPerPage = 6;
+        int productsPerPage = 8;
         int numberOfPage = (productListSize%productsPerPage==0)
                             ?(productListSize/productsPerPage)  // if page is even
                             :((productListSize/productsPerPage) + 1); // if page is odd

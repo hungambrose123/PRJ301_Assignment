@@ -32,28 +32,32 @@
 
     <!-- Checkout Start -->
     <div class="container-fluid pt-5">
-        <div class="row px-xl-5">
+        
+             <form action="checkOut" method="post">
+          <div class="row px-xl-5">       
             <div class="col-lg-8">
                 <div class="mb-4">
                     <h4 class="font-weight-semi-bold mb-4">Billing Address</h4>
-                    <div class="row">
+                   
+                      <div class="row">
                         <div class="col-md-6 form-group">
                             <label>Username</label>
-                            <input class="form-control" type="text" placeholder="John"  value="${sessionScope.account.name}" disabled>
+                            <input class="form-control" type="text" placeholder="John" name="username"  value="${sessionScope.account.name}" disabled>
                         </div>
                         <div class="col-md-6 form-group">
                             <label>E-mail</label>
-                            <input class="form-control" type="text" placeholder="example@email.com" value="${sessionScope.account.email}" disabled>
+                            <input class="form-control" type="text" placeholder="example@email.com" name="email" value="${sessionScope.account.email}" disabled>
                         </div>
                         <div class="col-md-6 form-group">
                             <label>Phone number</label>
-                            <input class="form-control" type="text" placeholder="+123 456 789">
+                            <input class="form-control" type="text" name="number" placeholder="+123 456 789">
                         </div>
                         <div class="col-md-6 form-group">
                             <label>Address</label>
-                            <input class="form-control" type="text" placeholder="123 Street">
+                            <input class="form-control" type="text" name="address" placeholder="123 Street">
                         </div>
-                    </div>
+                    </div>  
+                   
                 </div>
             </div>
             <div class="col-lg-4">
@@ -66,8 +70,10 @@
                         <c:if test="${not empty cart}">
                         <c:set var="subTotal" value="0"></c:set>
                         <c:forEach items="${cart}" var="c">
-                                <p style="color:blue" class="align-middle">---${c.value.product.name}--- </p>  
+                                <p style="color:blue" class="align-middle">---${c.value.product.name}--- </p>
+                                <input type="text" name="productName" value="${c.value.product.name}" hidden>
                                 <p style="color:red">Quantity:${c.value.quantity}</p>
+                                <input type="text" name="productQuantity" value="${c.value.quantity}" hidden>
                             <c:set var="subTotal" value="${subTotal + (c.value.quantity * c.value.product.price)}"></c:set>
                         </c:forEach>  
                         </c:if>
@@ -85,6 +91,7 @@
                         <div class="d-flex justify-content-between mt-2">
                             <h5 class="font-weight-bold">Total</h5>
                             <h5 class="font-weight-bold">${subTotal + 24000} VND</h5>
+                            <input type="text" name="totalMoney" value="${subTotal + 24000}" hidden>
                         </div>
                     </div>
                 </div>
@@ -101,11 +108,14 @@
                         </div>
                     </div>
                     <div class="card-footer border-secondary bg-transparent">
-                        <button class="btn btn-lg btn-block btn-primary font-weight-bold my-3 py-3">Place Order</button>
+                        <button type="submit" class="btn btn-lg btn-block btn-primary font-weight-bold my-3 py-3">Place Order</button><br>
+                        <p style="color:red">${message}</p>
                     </div>
                 </div>
             </div>
         </div>
+    </form>
+        
     </div>
     <!-- Checkout End -->
 

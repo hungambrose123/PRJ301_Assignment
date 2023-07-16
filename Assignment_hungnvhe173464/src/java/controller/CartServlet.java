@@ -60,15 +60,20 @@ public class CartServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        HashMap<Integer, Item> cart = (HashMap<Integer, Item>) session.getAttribute("cart");
-        int numOfItem = cart.size();
- 
-        session.setAttribute("cart", cart);
-        session.setAttribute("cartSize", numOfItem);
-        request.getRequestDispatcher("/userView/cart.jsp").forward(request, response);
-
-        
+        try{
+            HttpSession session = request.getSession();
+            HashMap<Integer, Item> cart = (HashMap<Integer, Item>) session.getAttribute("cart");
+            if(cart!=null){
+                int numOfItem = cart.size();
+                session.setAttribute("cartSize", numOfItem);
+            }
+            session.setAttribute("cart", cart);
+       
+            request.getRequestDispatcher("/userView/cart.jsp").forward(request, response);
+        }catch(ServletException | IOException e){
+            System.out.println(e);
+            response.sendRedirect("productServlet");
+        }  
     }
 
     /**

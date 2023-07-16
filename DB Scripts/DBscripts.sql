@@ -26,17 +26,17 @@ create table Product(
 create table Order_details(
 	id int identity(1,1) primary key not null,
 	total int,
+	email nvarchar(100),
 	phoneNum int,
 	customerAddress nvarchar(100),
-	payment_id int,
 	account_id int foreign key references Account(id)
 )
 
+/*
 create table Payment_details(
-	id int identity(1,1) primary key not null,
-	amount int,
-	status int,
-	order_id int foreign key references Order_details(id) not null
+	id int primary key not null,
+	amount int not null,
+	status int not null,
 )
 
 create table Order_items(
@@ -47,3 +47,4 @@ create table Order_items(
 	constraint order_belong_to foreign key (order_id) references Order_details(id),
 	constraint order_products foreign key (product_id) references Product(id)
 )
+*/
