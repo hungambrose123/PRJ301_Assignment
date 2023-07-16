@@ -7,6 +7,8 @@ package dal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 import model.OrderDetails;
 
 /**
@@ -43,6 +45,39 @@ public class OrderDAO {
         }catch(Exception e){
             System.out.println(e);
         }
+    }
+    
+    public List<OrderDetails> getAllOrder(){
+        List<OrderDetails> list = new ArrayList<>();
+        String sql="SELECT [id]\n"
+                + "      ,[total]\n"
+                + "      ,[email]\n"
+                + "      ,[phoneNum]\n"
+                + "      ,[customerAddress]\n"
+                + "      ,[account_id]\n"
+                + "  FROM [VanPhongPham].[dbo].[Order_details]";
+        try{
+            connection = new DBContext().getConnection();
+            preparedStatement = connection.prepareStatement(sql);
+            resultSet = preparedStatement.executeQuery();
+            
+            while(resultSet.next()){
+                OrderDetails od = new OrderDetails(
+                                                    resultSet.getInt(2),
+                                                    resultSet.getString(3),
+                                                    resultSet.getInt(4),
+                                                    resultSet.getString(5),
+                                                    resultSet.getInt(6));
+                list.add(od);
+            }
+            
+            return list;
+            
+        }catch(Exception e){
+            System.out.println(e);
+        }
+        return null;
+        
     }
 
 }
