@@ -79,5 +79,43 @@ public class OrderDAO {
         return null;
         
     }
+    
+    public void deleteOrderByTotal(int total) {
+        String query = "DELETE FROM [dbo].[Order_details]\n"
+                + "      WHERE total = ?";
+        try {
+            connection = new DBContext().getConnection();
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, total);
+            preparedStatement.executeUpdate();
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    public void editOrder(String totalToget, String total, String email, String phoneNum, String customerAddress, String accId) {
+        String query = "UPDATE [dbo].[Order_details]\n"
+                + "   SET [total] = ?\n"
+                + "      ,[email] = ?\n"
+                + "      ,[phoneNum] = ?\n"
+                + "      ,[customerAddress] = ?\n"
+                + "      ,[account_id] = ?\n"
+                + " WHERE total = ?";
+        try {
+            connection = new DBContext().getConnection();
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, total);
+            preparedStatement.setString(2, email);
+            preparedStatement.setString(3, phoneNum);
+            preparedStatement.setString(4, customerAddress);
+            preparedStatement.setString(5, accId);
+            preparedStatement.setString(6, totalToget);
+            preparedStatement.executeUpdate();
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
 
 }

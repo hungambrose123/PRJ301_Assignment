@@ -7,6 +7,8 @@ package dal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 import model.Account;
 
 /**
@@ -18,6 +20,30 @@ public class AccountDAO {
     PreparedStatement preparedStatement = null;
     ResultSet resultSet = null;
     
+    public List<Account> getAllAccount(){
+        List<Account> list = new ArrayList<>();
+        String sql = "SELECT \n"
+                + "      [username]\n"
+                + "      ,[password]\n"
+                + "      ,[email]\n"
+                + "      ,[isAdmin]\n"
+                + "  FROM [VanPhongPham].[dbo].[Account]";
+        try{
+            connection = new DBContext().getConnection();
+            preparedStatement = connection.prepareStatement(sql);
+            resultSet = preparedStatement.executeQuery();
+            
+            while(resultSet.next()){
+                Account acc = new Account(resultSet.getString(1),resultSet.getString(2),resultSet.getString(3),resultSet.getBoolean(4));
+                list.add(acc);
+            }
+            return list;
+        }catch(Exception e){
+            System.out.println(e);
+        }
+        
+        return null;
+    }
     public Account getAccount(Account acc){
         String query = "select * \n" +
                         "from Account \n" +

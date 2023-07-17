@@ -34,6 +34,7 @@
                         <div class="col-sm-6">
                             <h2>Manage <b>Orders</b></h2>
                             <a style="color:red" href="redirectToManage">View Product</a>
+                            <a style="color:red" href="accountServlet">View Account</a>
                         </div>
                         <div class="col-sm-6">
                             				
@@ -55,6 +56,7 @@
                             <th>Phone number</th>
                             <th>Customer Address</th>
                             <th>Account id</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -73,10 +75,10 @@
                             <td>${o.phoneNum}</td>
                             <td>${o.customerAddress}</td>
                             <td>${o.accountId}</td>
-<!--                            <td>
-                                <a href="#"   class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                                <a href="#" onclick="return confirm('Are you sure to delete this product?')" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-                            </td>-->
+                            <td>
+<!--                                <a href="#"   class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>-->
+                                <a href="deleteOrder?orderTotal=${o.total}" onclick="return confirm('Are you sure to delete this order?')" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                            </td>
                             <c:set var="id" value="${id+1}"></c:set>
                         </tr>
                     </c:forEach>

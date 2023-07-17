@@ -1,6 +1,6 @@
 <%-- 
-    Document   : productManage
-    Created on : Jul 11, 2023, 3:56:27 PM
+    Document   : accountList
+    Created on : Jul 17, 2023, 11:07:25 AM
     Author     : Warspite
 --%>
 
@@ -32,33 +32,34 @@
                 <div class="table-title">
                     <div class="row">
                         <div class="col-sm-6">
-                            <h2>Manage <b>Product</b></h2>
+                            <h2>Manage <b>Account</b></h2>
+                            <a style="color:red" href="redirectToManage">View Product</a>
                             <a style="color:red" href="orderControl">View Orders</a>
-                            <a style="color:red" href="accountServlet">View Account</a>
                         </div>
                         <div class="col-sm-6">
-                            <a href="##addEmployeeModal"  class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Product</span></a>					
+
                         </div>
                     </div>
                 </div>
                 <table class="table table-striped table-hover">
                     <thead>
                         <tr>
-<!--                            <th>
-                                <span class="custom-checkbox">
-                                    <input type="checkbox" id="selectAll">
-                                    <label for="selectAll"></label>
-                                </span>
-                            </th>-->
+                            <!--                            <th>
+                                                            <span class="custom-checkbox">
+                                                                <input type="checkbox" id="selectAll">
+                                                                <label for="selectAll"></label>
+                                                            </span>
+                                                        </th>-->
                             <th>ID</th>
                             <th>Name</th>
-                            <th>Image</th>
-                            <th>Price</th>
-                            <th>Actions</th>
+                            <th>Password</th>
+                            <th>Email</th>
+                            <th>IsAdmin</th>
                         </tr>
                     </thead>
                     <tbody>
-                    <c:forEach items="${productList}" var="o">
+                    <c:set var="id" value="1"></c:set>
+                    <c:forEach items="${accountList}" var="a">
                         <tr><!--
                             <td>
                                 <span class="custom-checkbox">
@@ -66,73 +67,30 @@
                                     <label for="checkbox1"></label>
                                 </span>
                             </td>-->
-                            <td>${o.id}</td>
-                            <td>${o.name}</td>
-                            <td>
-                                <img src="${o.image}">
-                            </td>
-                            <td>${o.price} VND</td>
-                            <td>
-                                <a href="edit?id=${o.id}"   class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                                <a href="delete?id=${o.id}" onclick="return confirm('Are you sure to delete this product?')" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-                            </td>
+                            <td>${id}</td>
+                            <td>${a.name}</td>
+                            <td>${a.password}</td>
+                            <td>${a.email}</td>
+                            <td>${a.isAdmin}</td>
+                            <!--                            <td>
+                                                            <a href="#"   class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                                                            <a href="#" onclick="return confirm('Are you sure to delete this product?')" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                                                        </td>-->
+                        <c:set var="id" value="${id+1}"></c:set>
                         </tr>
                     </c:forEach>
                     </tbody>
                 </table>
             </div>
         </div>
-        <!-- Add Modal HTML -->
-        <div id="addEmployeeModal" class="modal fade">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <form action="add" method="post">
-                        <div class="modal-header">						
-                            <h4 class="modal-title">Add Product</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        </div>
-                        <div class="modal-body">					
-                            <div class="form-group">
-                                <label>Name</label>
-                                <input name="name" type="text" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Image</label>
-                                <input name="image" type="text" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Price</label>
-                                <input name="price" type="text" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Description</label>
-                                <textarea name="description" class="form-control" required></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label>Category</label>
-                                <select name="category" class="form-select" aria-label="Default select example">
-                                    <c:forEach items="${productCategory}" var="o">
-                                        <option value="${o.id}">${o.name}</option>
-                                    </c:forEach>
-                                </select>
-                            </div>
 
-                        </div>
-                        <div class="modal-footer">
-                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                            <input type="submit" class="btn btn-success" value="Add">
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
         <!-- Edit Modal HTML -->
         <div id="editEmployeeModal" class="modal fade">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <form action="edit" method="post">
                         <div class="modal-header">						
-                            <h4 class="modal-title">Edit product</h4>
+                            <h4 class="modal-title">Edit account</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         </div>
                         <div class="modal-body">					
@@ -171,7 +129,7 @@
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         </div>
                         <div class="modal-body">					
-                            <p>Are you sure you want to delete these product?</p>
+                            <p>Are you sure you want to delete these account?</p>
                             <p class="text-warning"><small>This action cannot be undone.</small></p>
                         </div>
                         <div class="modal-footer">
@@ -181,15 +139,16 @@
                     </form>
                 </div>
             </div>
-        </div>
+        </div>         
+
         <script src="js/manager.js" type="text/javascript"></script>
         <script>
-    document.getElementById("delete").addEventListener("submit", function() {
-   if (confirm("Are you sure to delete this product")) {
-      return true;
-   } else {
-      return false;
-   }
+            document.getElementById("delete").addEventListener("submit", function () {
+                if (confirm("Are you sure to delete this account")) {
+                    return true;
+                } else {
+                    return false;
+                }
             });
         </script>
     </body>
